@@ -1,0 +1,59 @@
+# Design and variable mapping
+
+## Slate palette
+
+Defined in `src/palettes/slate.css`.
+
+| Token                       | Light                             | Dark                              | Role                                               |
+| --------------------------- | --------------------------------- | --------------------------------- | -------------------------------------------------- |
+| `--ink-surface`             | `#ffffff`                         | `#1c1c1e`                         | page, editor                                       |
+| `--ink-bg`                  | `#f5f5f7`                         | `#000000`                         | secondary background                               |
+| `--ink-sidebar`             | `#f2f2f5`                         | `#161618`                         | left sidebar                                       |
+| `--ink-float`               | `#ffffff`                         | `#2c2c2e`                         | popovers, dialogs, palette                         |
+| `--ink-label` / `-2` / `-3` | `#1d1d1f` / `#6e6e73` / `#aeaeb2` | `#f5f5f7` / `#98989d` / `#636366` | text, secondary text, tertiary (bullets, brackets) |
+| `--ink-line` / `-soft`      | `#d2d2d7` / `#e8e8ed`             | `#38383a` / `#2c2c2e`             | borders, guide lines                               |
+| `--ink-fill` / `-strong`    | 8% / 12% grey                     | 18% / 28% grey                    | code, properties, tag pills                        |
+| `--ink-tint`                | `#223b3b`                         | `#b3c6c6`                         | primary (buttons, selected day, Decision callout)  |
+| `--ink-tint-soft`           | `#dfe8e8`                         | `#213232`                         | selection, highlighted rows, active sidebar item   |
+| `--ink-accent`              | `#9c2529`                         | `#e8878a`                         | today, cloze                                       |
+
+System colours (green, orange, red, blue, purple) each come as a full colour, a `-text` variant and a `-soft` background, and drive the callouts and task icons. Highlight colours (`--ink-hl-*`) drive `==highlight==` and the block background colours.
+
+## How the tokens reach Logseq
+
+Logseq reads three layers of variables, and a theme has to set all three:
+
+1. **shui/Tailwind tokens** (`--background`, `--primary`, `--popover`, `--border`, `--ring`, …). Consumed as `hsl(var(--primary))`, so they **must be bare channels** (`180 27% 18%`). A hex value makes `hsl(#…)` invalid and blanks every dialog, menu and button. The palette carries channel copies (`--ink-c-*`) for this.
+2. **Radix-style scales** `--lx-gray-01…12` and `--lx-accent-01…12`, plus the `-alpha` steps core uses. Core reads these **before** any `--ls-*` fallback: page links and tags use `--lx-accent-11`, bullets `--lx-gray-08`, guide lines `--lx-gray-04-alpha`, the properties background `--lx-gray-03`.
+3. **Classic `--ls-*`** variables, still the source for text colours, highlights (`--ls-highlight-color-<name>` is what the DB background-colour property uses), blockquotes and inline code.
+
+**Where they are declared matters.** Core defines `--ls-*` on `html[data-theme=X][data-color=logseq]` (specificity 0,2,1), and non-default accent colours set shui tokens on `body`. A mapping on `:root` loses to both. The mapping is therefore declared on:
+
+```css
+html[data-theme][data-color], html[data-theme][data-color] body { … }
+```
+
+The palette itself sits on `:root` (light) and `html[data-theme="dark"]` (dark). Since the mapping only points at `--ink-*` tokens, one file serves both modes.
+
+The left sidebar's background is `--left-sidebar-bg-color`, which core defines on `main.theme-container-inner`, so it is overridden there.
+
+## Where !important is used
+
+Only where core itself uses it, or sets the value through a Tailwind class:
+
+- bullet hover colour
+- the `.block-children` guide line
+- the command palette input size
+- `.CodeMirror` / `pre` backgrounds
+- the CodeMirror gutter
+
+The tests enforce this list.
+
+## Adding a variant
+
+1. Copy `src/palettes/slate.css` to `src/palettes/<id>.css` and set its `@variant` name and `@description`.
+2. Change the values. Keep every token name: `src/base.css` uses them all, and the tests check each palette defines every token in light and dark. The `--ink-c-*` tokens are the same colours written as HSL channels (`H S% L%`) for the shui layer. The `--ink-g01…12` and `--ink-a01…12` steps are the grey and accent scales.
+3. `npm run build`: this writes `themes/inkwell-<id>.css` and registers "Inkwell <Name> Light/Dark" in `package.json`.
+4. `npm test`, then `npm run lab -- --variant <id>` for a human pass.
+
+Component styling lives only in `src/base.css`. If a variant needs a different look rather than different colours, add a token for it to every palette instead of a variant-specific rule.
