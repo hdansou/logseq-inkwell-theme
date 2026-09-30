@@ -1,0 +1,188 @@
+/* Inkwell — shared rules for every variant. No colours here: everything comes from the
+   --ink-* tokens of the palette in src/palettes/. Edit this file, then run `npm run build`. */
+
+/* ---------- map onto Logseq's variables ----------
+   Core sets these on html[data-theme=…][data-color=…] (specificity 0,2,1) and, for non-default
+   accent colours, on body/.light-theme/.dark-theme. This selector beats both. */
+html[data-theme][data-color], html[data-theme][data-color] body {
+  --ls-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", system-ui;
+  --ls-page-title-size: 32px;
+
+  /* shui / Tailwind tokens (channels only) */
+  --background: var(--ink-c-surface); --foreground: var(--ink-c-label);
+  --card: var(--ink-c-surface); --card-foreground: var(--ink-c-label);
+  --popover: var(--ink-c-float); --popover-foreground: var(--ink-c-label);
+  --primary: var(--ink-c-tint); --primary-foreground: var(--ink-c-on-tint);
+  --secondary: var(--ink-c-line-soft); --secondary-foreground: var(--ink-c-label);
+  --muted: var(--ink-c-muted); --muted-foreground: var(--ink-c-label-2);
+  --accent: var(--ink-c-tint-soft); --accent-foreground: var(--ink-c-label);
+  --destructive: var(--ink-c-red); --destructive-foreground: 0 0% 100%;
+  --border: var(--ink-c-line-soft); --input: var(--ink-c-line); --ring: var(--ink-c-tint);
+
+  /* gray + accent scales */
+  --lx-gray-01: var(--ink-g01); --lx-gray-02: var(--ink-g02); --lx-gray-03: var(--ink-g03); --lx-gray-04: var(--ink-g04);
+  --lx-gray-05: var(--ink-g05); --lx-gray-06: var(--ink-g06); --lx-gray-07: var(--ink-g07); --lx-gray-08: var(--ink-g08);
+  --lx-gray-09: var(--ink-g09); --lx-gray-10: var(--ink-g10); --lx-gray-11: var(--ink-g11); --lx-gray-12: var(--ink-g12);
+  --lx-gray-03-alpha: var(--ink-fill); --lx-gray-04-alpha: var(--ink-fill-strong);
+  --lx-gray-05-alpha: var(--ink-fill-strong); --lx-gray-06-alpha: var(--ink-fill-strong);
+  --lx-accent-01: var(--ink-a01); --lx-accent-02: var(--ink-a02); --lx-accent-03: var(--ink-a03); --lx-accent-04: var(--ink-a04);
+  --lx-accent-05: var(--ink-a05); --lx-accent-06: var(--ink-a06); --lx-accent-07: var(--ink-a07); --lx-accent-08: var(--ink-a08);
+  --lx-accent-09: var(--ink-a09); --lx-accent-10: var(--ink-a10); --lx-accent-11: var(--ink-a11); --lx-accent-12: var(--ink-a12);
+  --lx-accent-07-alpha: var(--ink-tint-soft);
+
+  /* classic --ls-* (still read where no --lx-* comes first) */
+  --ls-primary-background-color: var(--ink-surface);
+  --ls-secondary-background-color: var(--ink-bg);
+  --ls-tertiary-background-color: var(--ink-fill-strong);
+  --ls-quaternary-background-color: var(--ink-fill-strong);
+  --ls-primary-text-color: var(--ink-label);
+  --ls-secondary-text-color: var(--ink-label-2);
+  --ls-title-text-color: var(--ink-label);
+  --ls-link-text-color: var(--ink-label);
+  --ls-link-text-hover-color: var(--ink-label);
+  --ls-link-ref-text-color: var(--ink-label);
+  --ls-link-ref-text-hover-color: var(--ink-label);
+  --ls-block-ref-link-text-color: var(--ink-label-3);
+  --ls-tag-text-color: var(--ink-label);
+  --ls-tag-text-hover-color: var(--ink-label);
+  --ls-block-bullet-color: var(--ink-label-3);
+  --ls-block-bullet-border-color: var(--ink-fill-strong);
+  --ls-block-highlight-color: var(--ink-tint-soft);
+  --ls-selection-background-color: var(--ink-tint-soft);
+  --ls-selection-text-color: var(--ink-label);
+  --ls-page-mark-bg-color: var(--ink-hl-yellow);
+  --ls-page-mark-color: var(--ink-label);
+  --ls-page-inline-code-bg-color: var(--ink-fill);
+  --ls-page-inline-code-color: var(--ink-label);
+  --ls-page-blockquote-color: var(--ink-label);
+  --ls-page-blockquote-bg-color: var(--ink-fill);
+  --ls-page-blockquote-border-color: transparent;
+  --ls-border-color: var(--ink-line-soft);
+  --ls-secondary-border-color: var(--ink-line-soft);
+  --ls-tertiary-border-color: var(--ink-line-soft);
+  --ls-guideline-color: var(--ink-line-soft);
+  --ls-active-primary-color: var(--ink-tint);
+  --ls-active-secondary-color: var(--ink-tint);
+  --ls-focus-ring-color: var(--ink-tint);
+  --ls-cloze-text-color: var(--ink-accent);
+  --ls-icon-color: var(--ink-label-2);
+
+  /* DB "background color" block property → var(--ls-highlight-color-<name>) inline */
+  --ls-highlight-color-yellow: var(--ink-hl-yellow);
+  --ls-highlight-color-green: var(--ink-hl-green);
+  --ls-highlight-color-blue: var(--ink-hl-blue);
+  --ls-highlight-color-purple: var(--ink-hl-purple);
+  --ls-highlight-color-red: var(--ink-hl-red);
+  --ls-highlight-color-pink: var(--ink-hl-red);
+  --ls-highlight-color-gray: var(--ink-hl-gray);
+}
+/* core defines this on main.theme-container-inner, so it must be overridden there */
+main.theme-container-inner { --left-sidebar-bg-color: var(--ink-sidebar); }
+
+body, #app-container, #main-content-container { background: var(--ink-surface); color: var(--ink-label); -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; }
+.ls-block .block-content { font-size: 15px; line-height: 24px; }
+/* the DB page title is itself a block: keep it out of the 15px body size */
+.ls-page-title-container .block-content { font-size: inherit; line-height: inherit; }
+
+/* ---------- page title + headings ---------- */
+.ls-page-title-container { font-weight: 700; line-height: 38px; letter-spacing: -0.025em; color: var(--ink-label); }
+/* rendered: h1…h6.block-title-wrap.as-heading; editing: textarea.h1…h6 inside .editor-inner */
+.ls-block h1, .editor-inner .h1 { font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -0.02em; }
+.ls-block h2, .editor-inner .h2 { font-size: 21px; line-height: 28px; font-weight: 600; letter-spacing: -0.015em; }
+.ls-block h3, .editor-inner .h3 { font-size: 18px; line-height: 24px; font-weight: 600; letter-spacing: -0.01em; }
+.ls-block h4, .editor-inner .h4 { font-size: 16px; line-height: 22px; font-weight: 600; }
+.ls-block h5, .editor-inner .h5 { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--ink-label-2); }
+.ls-block h6, .editor-inner .h6 { font-size: 12px; line-height: 16px; font-weight: 600; color: var(--ink-label-2); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ---------- outliner: bullets, guides ---------- */
+/* resting bullet (--lx-gray-08) and collapsed halo (--lx-gray-04-alpha) come from the scales above */
+.bullet-container:not(.typed-list) .bullet { width: 6px; height: 6px; transition: background-color .12s; }
+.bullet-link-wrap:hover > .bullet-container:not(.typed-list) .bullet { background-color: var(--ink-label) !important; } /* core uses !important here */
+.bullet-container.bullet-closed:not(.typed-list) .bullet { background-color: var(--ink-label-2); }
+.bullet-link-wrap .ui__icon { color: var(--ink-label-2); }
+/* the visible guide line is .block-children's border (core: !important); .block-children-left-border is the click strip */
+.block-children { border-left-color: var(--ink-line-soft) !important; }
+.block-children-left-border:hover { background-color: var(--ink-label-3); }
+.block-control .rotating-arrow { color: var(--ink-label-3); }
+.ls-block.selected, .block-highlight { border-radius: 7px; }
+
+/* ---------- links, tags, references ---------- */
+a.page-ref { color: var(--ink-label); font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--ink-label-3); border-radius: 2px; }
+a.page-ref:hover { color: var(--ink-label); background: var(--ink-fill-strong); border-bottom-color: var(--ink-label); }
+.page-reference .bracket { color: var(--ink-label-3); font-weight: 400; }
+/* inline #tag; the tag chips at the right of a block are .block-tag a.tag */
+a.tag { height: 22px; padding: 0 8px; border-radius: 980px; background: var(--ink-fill-strong); color: var(--ink-label); font-size: 12.5px; font-weight: 500; letter-spacing: 0; text-decoration: none; vertical-align: 1px; opacity: 1; }
+a.tag:hover { background: var(--ink-line); }
+a.external-link { color: var(--ink-label); text-decoration: underline; text-decoration-color: var(--ink-label-3); text-underline-offset: 3px; border-bottom: 0; }
+a.external-link::after { content: " \2197"; color: var(--ink-label-2); font-size: .85em; }
+/* DB [[uuid]] block refs render as .page-reference/.page-ref; .block-ref covers the remaining legacy/embed paths */
+.block-ref { background: var(--ink-fill); border-radius: 4px; padding: 1px 5px; box-shadow: inset 2px 0 0 var(--ink-label-3); border-bottom: 0; }
+
+/* ---------- properties ---------- */
+.ls-block .ls-properties-area { background: var(--ink-fill); border-radius: 10px; padding: 6px 10px; }
+.property-key-inner, a.property-k { color: var(--ink-label-2); }
+
+/* ---------- highlights ---------- */
+mark { background: var(--ink-hl-yellow); color: inherit; border-radius: 3px; padding: 1px 2px; }
+
+/* ---------- callouts (#+BEGIN_NOTE … #+END_NOTE) ---------- */
+.admonitionblock { border-radius: 12px; padding: 12px 14px; margin: 6px 0; background: var(--ink-fill); }
+.admonitionblock .admonition-icon { color: var(--ink-label-2); border-right: 0; }
+.admonitionblock .admonition-icon svg { color: inherit; fill: currentColor; } /* core colours svg.note etc. directly, and some icons carry a fill="var(--color-…)" attribute */
+.admonitionblock.note { background: var(--ink-blue-soft); } .admonitionblock.note .admonition-icon { color: var(--ink-blue); }
+.admonitionblock.tip { background: var(--ink-green-soft); } .admonitionblock.tip .admonition-icon { color: var(--ink-green); }
+.admonitionblock.important { background: var(--ink-purple-soft); } .admonitionblock.important .admonition-icon { color: var(--ink-purple); }
+.admonitionblock.warning { background: var(--ink-orange-soft); } .admonitionblock.warning .admonition-icon { color: var(--ink-orange); }
+.admonitionblock.caution { background: var(--ink-red-soft); } .admonitionblock.caution .admonition-icon { color: var(--ink-red); }
+.admonitionblock.pinned { background: var(--ink-tint); color: var(--ink-on-tint); } /* PINNED = Decision callout */
+.admonitionblock.pinned .admonition-icon { color: var(--ink-on-tint); }
+/* markdown "> quote" and the DB Quote display type; colours come from --ls-page-blockquote-* */
+blockquote, .block-content-or-editor-wrap[data-node-type='quote'] { border-left-width: 0; border-radius: 12px; padding: 12px 16px; font-family: "New York", "Iowan Old Style", Georgia, serif; font-style: italic; }
+
+/* ---------- tasks (DB: status/priority are icons, class ls-icon-<IconName>) ---------- */
+.ls-icon-Backlog, .ls-icon-Todo { color: var(--ink-label-2); }
+.ls-icon-InProgress50 { color: var(--ink-blue); }
+.ls-icon-InReview { color: var(--ink-purple); }
+.ls-icon-Done { color: var(--ink-green); }
+.ls-icon-Cancelled { color: var(--ink-label-3); }
+.positioned-properties .ls-icon-priorityLvlUrgent, .property-value-inner .ls-icon-priorityLvlUrgent { color: var(--ink-red); }
+.ls-icon-priorityLvlHigh { color: var(--ink-orange); }
+input[type="checkbox"].form-checkbox { color: var(--ink-tint); }
+
+/* ---------- left sidebar ---------- */
+.left-sidebar-inner.as-container { border-right: 1px solid var(--ink-line-soft); }
+.left-sidebar-inner .sidebar-content-group-inner > .hd { font-size: 11.5px; font-weight: 600; color: var(--ink-label-2); text-transform: none; letter-spacing: 0; }
+.left-sidebar-inner a.item { border-radius: 8px; font-size: 14px; color: var(--ink-label); }
+.left-sidebar-inner a.item:hover { background: var(--ink-fill); }
+.left-sidebar-inner a.item.active { background: var(--ink-tint-soft); font-weight: 600; }
+.left-sidebar-inner a.item.active .ui__icon { color: var(--ink-tint); opacity: 1; }
+.left-sidebar-inner .ui__icon { color: var(--ink-label-2); }
+
+/* ---------- floating surfaces (Base UI, not Radix) ---------- */
+.ui__popover-content, .ui__dropdown-menu-content, .ui__dropdown-menu-sub-content, .ui__context-menu-content, .ls-preview-popup {
+  background: var(--ink-float); color: var(--ink-label); border: 0; border-radius: 14px; box-shadow: var(--ink-shadow-float); }
+.ui__dialog-overlay { background: var(--ink-scrim); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+.ui__dialog-content { background: var(--ink-float); border: 0; border-radius: 16px; box-shadow: var(--ink-shadow-float); }
+.cp__cmdk-search-input { font-size: 18px !important; background: transparent; } /* core applies text-xl via class */
+[data-cmdk-item] { border-radius: 9px; }
+[data-cmdk-item][data-highlighted] { background: var(--ink-tint-soft); color: var(--ink-label); }
+.menu-link { border-radius: 9px; }
+.menu-link.chosen, .menu-link:hover { background: var(--ink-tint-soft); color: var(--ink-label); }
+/* keycaps: each key is .shui-shortcut-combo > kbd.shui-shortcut-key */
+/* core: .shui-shortcut-combo.shui-shortcut-glow removes the border (0,2,0); kbd.shui-shortcut-key sets size and colour (0,1,1) */
+.shui-shortcut-combo, .shui-shortcut-combo.shui-shortcut-glow { background: var(--ink-surface); border: 1px solid var(--ink-line); border-bottom-width: 1.5px; border-radius: 5px; }
+.shui-shortcut-combo kbd.shui-shortcut-key { font: 500 11px var(--ls-font-family); color: var(--ink-label-2); }
+/* date picker: react-day-picker 9 with shui classNames; selected = --primary, today = --accent */
+.ui__calendar [data-today]:not([data-selected]) > button { color: var(--ink-accent); font-weight: 700; background: transparent; }
+.ui__calendar [data-day] > button { border-radius: 50%; } /* round days, so the selected fill and the focus ring are circles */
+
+/* ---------- buttons, inputs ---------- */
+.ui__button.as-solid, .ui__button.as-secondary, .ui__button.as-outline { border-radius: 980px; }
+.ui__button.as-secondary, .ui__button.as-outline { background: var(--ink-fill-strong); color: var(--ink-label); border: 0; }
+.form-input, .ui__input { border-radius: 10px; border: 1px solid var(--ink-line); background: var(--ink-surface); }
+.form-input:focus, .ui__input:focus { border-color: var(--ink-tint); box-shadow: 0 0 0 3px var(--ink-tint-soft); }
+
+/* ---------- code ---------- */
+:not(pre) > code { background: var(--ink-fill); border-radius: 4px; padding: 1px 5px; font-size: 13px; }
+.CodeMirror, pre { background: var(--ink-fill) !important; border-radius: 8px; } /* CodeMirror 5 themes set their own background */
+.CodeMirror-gutters { background: transparent !important; border-right: 1px solid var(--ink-line-soft) !important; }

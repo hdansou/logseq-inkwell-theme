@@ -1,0 +1,45 @@
+{
+  "name": "logseq-inkwell-theme",
+  "version": "0.1.0",
+  "description": "Quiet, ink-toned themes for Logseq DB graphs, in light and dark. Slate: deep slate and oxblood on Apple system greys.",
+  "author": "Danzu",
+  "license": "MIT",
+  "keywords": [
+    "logseq",
+    "logseq-plugin",
+    "logseq-theme",
+    "theme",
+    "light-theme",
+    "dark-theme",
+    "inkwell"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test",
+    "package": "sh tools/package.sh",
+    "lab": "sh tools/theme-lab/lab.sh",
+    "lab:feedback": "sh tools/theme-lab/feedback.sh"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "logseq": {
+    "id": "logseq-inkwell-theme",
+    "title": "Inkwell",
+    "icon": "./assets/icon.png",
+    "themes": [
+      {
+        "name": "Inkwell Slate Light",
+        "url": "./themes/inkwell-slate.css",
+        "description": "Deep slate and oxblood on Apple system greys (light)",
+        "mode": "light"
+      },
+      {
+        "name": "Inkwell Slate Dark",
+        "url": "./themes/inkwell-slate.css",
+        "description": "Deep slate and oxblood on Apple system greys (dark)",
+        "mode": "dark"
+      }
+    ]
+  }
+}
