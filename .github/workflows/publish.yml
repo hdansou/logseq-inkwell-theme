@@ -1,0 +1,30 @@
+name: Publish
+
+# Push a tag like v0.1.0 (matching package.json "version") to build the marketplace zip
+# and attach it to a GitHub release.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Tag matches package.json version
+        run: |
+          VERSION=$(node -p 'require("./package.json").version')
+          test "${GITHUB_REF_NAME}" = "v${VERSION}" || { echo "tag ${GITHUB_REF_NAME} != v${VERSION}"; exit 1; }
+      - name: Build zip (runs the tests first)
+        id: pack
+        run: echo "zip=$(sh tools/package.sh)" >> "$GITHUB_OUTPUT"
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.pack.outputs.zip }}
+          generate_release_notes: true
