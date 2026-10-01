@@ -13,7 +13,7 @@ Status: `[ ]` todo · `[~]` in progress · `[x]` done. Newest decisions at the b
 - [x] T07 Docs: design tokens (docs/DESIGN.md), testing (docs/TESTING.md), release checklist (docs/RELEASE.md)
 - [x] T18 Live-validate Inkwell Slate on app.logseq.com 2.0.1 (2026-09-29): 0 failures across light, dark and 4 accents after 3 fixes (callout icon fill, keycap specificity, round calendar days). Hover preview not triggerable by automation → Theme-Lab.
 - [ ] T19 Design call: pink background maps to `--ink-hl-red` (identical to red); the block context menu's colour swatches show Logseq's saturated colours, not the palette's paler ones
-- [x] T20 Feedback (2026-10-01): tag-table filter list — hovered option barely highlighted in dark mode. Fixed with `--ink-hover` (dark #405454, 1.73:1 on the popover) across menu-link, Base UI menu/select items and cmdk; test added
+- [x] T20 Feedback (2026-10-01): tag-table filter list — hovered option barely highlighted in dark mode. Fixed with `--ink-hover`; first teal (#405454) judged too teal, now neutral grey (dark #404244, 1.38:1 on the popover; light #dcdee1) across menu-link, Base UI menu/select items and cmdk; test added
 - [ ] T08 Collect human feedback from the Theme-Lab graph (`npm run lab:feedback`) and apply it
 - [~] T09 Marketplace assets: `assets/icon.png` (done), screenshot(s) light + dark (todo)
 - [ ] T12 Load as an unpacked plugin in Developer mode; confirm both themes register and apply (no `main`, no `effect` key: theme-only package, LSPlugin.core.ts:1038)
