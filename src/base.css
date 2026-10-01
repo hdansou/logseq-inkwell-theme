@@ -168,6 +168,12 @@ input[type="checkbox"].form-checkbox { color: var(--ink-tint); }
 [data-cmdk-item][data-highlighted] { background: var(--ink-hover); color: var(--ink-label); }
 .menu-link { border-radius: 9px; }
 .menu-link.chosen, .menu-link:hover { background: var(--ink-hover); color: var(--ink-label); }
+/* filter lists and autocomplete: core paints the chosen row from #ui__ac-inner (1,2,0) with --lx-gray-04 (= the popover
+   in dark mode) and dims its text from .cp__select-main (0,3,0 / .dark 0,4,0), so match those selectors */
+#ui__ac-inner .menu-link.chosen, #ui__ac-inner .menu-link:hover,
+.cp__select-main .menu-link.chosen, .cp__select-main .menu-link.chosen p,
+.dark .cp__select-main .menu-link.chosen, .dark .cp__select-main .menu-link.chosen p { background: var(--ink-hover); color: var(--ink-label); }
+.cp__select-main .menu-link.chosen p, .dark .cp__select-main .menu-link.chosen p { background: transparent; }
 /* Base UI menus and selects highlight with data-[highlighted]:bg-muted, too faint on a popover in dark mode */
 .ui__dropdown-menu-item[data-highlighted], .ui__dropdown-menu-checkbox-item[data-highlighted], .ui__dropdown-menu-radio-item[data-highlighted],
 .ui__dropdown-menu-sub-trigger[data-highlighted], .ui__dropdown-menu-sub-trigger[data-open], .ui__context-menu-item[data-highlighted],
