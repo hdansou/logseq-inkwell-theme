@@ -165,9 +165,13 @@ input[type="checkbox"].form-checkbox { color: var(--ink-tint); }
 .ui__dialog-content { background: var(--ink-float); border: 0; border-radius: 16px; box-shadow: var(--ink-shadow-float); }
 .cp__cmdk-search-input { font-size: 18px !important; background: transparent; } /* core applies text-xl via class */
 [data-cmdk-item] { border-radius: 9px; }
-[data-cmdk-item][data-highlighted] { background: var(--ink-tint-soft); color: var(--ink-label); }
+[data-cmdk-item][data-highlighted] { background: var(--ink-hover); color: var(--ink-label); }
 .menu-link { border-radius: 9px; }
-.menu-link.chosen, .menu-link:hover { background: var(--ink-tint-soft); color: var(--ink-label); }
+.menu-link.chosen, .menu-link:hover { background: var(--ink-hover); color: var(--ink-label); }
+/* Base UI menus and selects highlight with data-[highlighted]:bg-muted, too faint on a popover in dark mode */
+.ui__dropdown-menu-item[data-highlighted], .ui__dropdown-menu-checkbox-item[data-highlighted], .ui__dropdown-menu-radio-item[data-highlighted],
+.ui__dropdown-menu-sub-trigger[data-highlighted], .ui__dropdown-menu-sub-trigger[data-open], .ui__context-menu-item[data-highlighted],
+.ui__context-menu-checkbox-item[data-highlighted], .ui__context-menu-radio-item[data-highlighted], .ui__select-item[data-highlighted] { background: var(--ink-hover); color: var(--ink-label); }
 /* keycaps: each key is .shui-shortcut-combo > kbd.shui-shortcut-key */
 /* core: .shui-shortcut-combo.shui-shortcut-glow removes the border (0,2,0); kbd.shui-shortcut-key sets size and colour (0,1,1) */
 .shui-shortcut-combo, .shui-shortcut-combo.shui-shortcut-glow { background: var(--ink-surface); border: 1px solid var(--ink-line); border-bottom-width: 1.5px; border-radius: 5px; }

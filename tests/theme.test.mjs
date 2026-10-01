@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { existsSync } from 'node:fs'
 import path from 'node:path'
 import {
-  ROOT, read, rules, declarations, ruleFor, isChannels, tokensUsed,
+  ROOT, read, rules, declarations, ruleFor, isChannels, tokensUsed, contrast,
   MAPPING_SELECTOR, LIGHT_SELECTOR, DARK_SELECTOR,
   SHUI_TOKENS, LX_VARS, LS_VARS, DEAD_SELECTORS, IMPORTANT_ALLOWED,
 } from './_lib.mjs'
@@ -60,6 +60,15 @@ for (const variant of VARIANTS) {
     test('the palette defines every --ink-* token that base.css uses', () => {
       assert.deepEqual(tokensUsed(base).filter((t) => !(t in light)), [])
     })
+
+    for (const [mode, palette] of [['light', light], ['dark', { ...light, ...dark }]]) {
+      test(`highlighted rows stand out on floating surfaces in ${mode} mode`, () => {
+        // Menus, selects and the palette paint the hovered/chosen row with --ink-hover on --ink-float.
+        assert.ok(palette['--ink-hover'], 'palette must define --ink-hover')
+        const ratio = contrast(palette['--ink-hover'], palette['--ink-float'])
+        assert.ok(ratio >= 1.3, `--ink-hover vs --ink-float contrast ${ratio.toFixed(2)} < 1.3`)
+      })
+    }
 
     test('only light/dark activation — Logseq never sets a custom data-theme name', () => {
       const names = [...css.matchAll(/data-theme="([^"]+)"/g)].map((m) => m[1])

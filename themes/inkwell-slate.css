@@ -16,6 +16,7 @@
   --ink-fill: #78788014; --ink-fill-strong: #7878801f; --ink-line: #d2d2d7; --ink-line-soft: #e8e8ed;
   --ink-label: #1d1d1f; --ink-label-2: #6e6e73; --ink-label-3: #aeaeb2;
   --ink-tint: #223b3b; --ink-on-tint: #ffffff; --ink-tint-soft: #dfe8e8; --ink-accent: #9c2529;
+  --ink-hover: #d0dddd; /* hovered/chosen row on floating surfaces (menus, selects, palette) */
   --ink-green: #34c759; --ink-green-text: #1f7a35; --ink-green-soft: #e3f7e8;
   --ink-orange: #ff9500; --ink-orange-text: #b03d00; --ink-orange-soft: #fff0db;
   --ink-red: #ff3b30; --ink-red-text: #c4141f; --ink-red-soft: #ffe4e2;
@@ -41,6 +42,7 @@ html[data-theme="dark"] {
   --ink-fill: #7878802e; --ink-fill-strong: #78788047; --ink-line: #38383a; --ink-line-soft: #2c2c2e;
   --ink-label: #f5f5f7; --ink-label-2: #98989d; --ink-label-3: #636366;
   --ink-tint: #b3c6c6; --ink-on-tint: #000000; --ink-tint-soft: #213232; --ink-accent: #e8878a;
+  --ink-hover: #405454; /* must be LIGHTER than --ink-float in dark mode, or the highlight vanishes */
   --ink-green: #30d158; --ink-green-text: #4be07a; --ink-green-soft: #20442b;
   --ink-orange: #ff9f0a; --ink-orange-text: #ffb340; --ink-orange-soft: #4e391a;
   --ink-red: #ff453a; --ink-red-text: #ff7a70; --ink-red-soft: #4e2524;
@@ -227,9 +229,13 @@ input[type="checkbox"].form-checkbox { color: var(--ink-tint); }
 .ui__dialog-content { background: var(--ink-float); border: 0; border-radius: 16px; box-shadow: var(--ink-shadow-float); }
 .cp__cmdk-search-input { font-size: 18px !important; background: transparent; } /* core applies text-xl via class */
 [data-cmdk-item] { border-radius: 9px; }
-[data-cmdk-item][data-highlighted] { background: var(--ink-tint-soft); color: var(--ink-label); }
+[data-cmdk-item][data-highlighted] { background: var(--ink-hover); color: var(--ink-label); }
 .menu-link { border-radius: 9px; }
-.menu-link.chosen, .menu-link:hover { background: var(--ink-tint-soft); color: var(--ink-label); }
+.menu-link.chosen, .menu-link:hover { background: var(--ink-hover); color: var(--ink-label); }
+/* Base UI menus and selects highlight with data-[highlighted]:bg-muted, too faint on a popover in dark mode */
+.ui__dropdown-menu-item[data-highlighted], .ui__dropdown-menu-checkbox-item[data-highlighted], .ui__dropdown-menu-radio-item[data-highlighted],
+.ui__dropdown-menu-sub-trigger[data-highlighted], .ui__dropdown-menu-sub-trigger[data-open], .ui__context-menu-item[data-highlighted],
+.ui__context-menu-checkbox-item[data-highlighted], .ui__context-menu-radio-item[data-highlighted], .ui__select-item[data-highlighted] { background: var(--ink-hover); color: var(--ink-label); }
 /* keycaps: each key is .shui-shortcut-combo > kbd.shui-shortcut-key */
 /* core: .shui-shortcut-combo.shui-shortcut-glow removes the border (0,2,0); kbd.shui-shortcut-key sets size and colour (0,1,1) */
 .shui-shortcut-combo, .shui-shortcut-combo.shui-shortcut-glow { background: var(--ink-surface); border: 1px solid var(--ink-line); border-bottom-width: 1.5px; border-radius: 5px; }
