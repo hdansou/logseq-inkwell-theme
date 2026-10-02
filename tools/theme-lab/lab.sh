@@ -24,6 +24,15 @@ while [ $# -gt 0 ]; do
   shift
 done
 
+# Guards: --rebuild runs `logseq graph remove`, so only ever touch a dedicated test graph,
+# and the variant name becomes a file path, so keep it to plain slug characters.
+case "$GRAPH" in
+  Theme-Lab|Theme-Lab-*|Inkwell-*) ;;
+  *) echo "refusing graph '$GRAPH': lab graphs must be named Theme-Lab, Theme-Lab-* or Inkwell-*" >&2; exit 2 ;;
+esac
+case "$GRAPH" in *[![:alnum:]-]*) echo "refusing graph '$GRAPH': letters, digits and '-' only" >&2; exit 2 ;; esac
+case "$VARIANT" in ''|*[![:lower:][:digit:]-]*) echo "invalid variant '$VARIANT': use a palette id like slate" >&2; exit 2 ;; esac
+
 LAB_VARIANT="$VARIANT" python3 "$DIR/build_theme_lab.py"
 
 if logseq graph list | grep -qx "[* ] $GRAPH"; then

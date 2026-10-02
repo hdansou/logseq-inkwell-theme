@@ -1,0 +1,7 @@
+# Keeps the SHA-pinned GitHub Actions current: proposes a PR updating the SHA and its version comment.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

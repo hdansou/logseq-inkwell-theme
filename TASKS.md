@@ -42,6 +42,17 @@ Punch list agreed with the owner; applied in the recommended order.
 - [ ] B2 Distinct pink highlight (= T19) (step 3, optional)
 - [ ] M4 GitHub home: `repository` in package.json, real `repo` in the manifest, push (owner)
 
+## Security audit (2026-10-01)
+
+Overall risk LOW: the shipped package is CSS only (no JS, no `effect`, no `@import`/`url()`), there are no npm dependencies, and no secrets are in files or history.
+
+- [x] SEC-001 (medium) `lab.sh --rebuild` could `logseq graph remove` any graph named by `LAB_GRAPH`; now only `Theme-Lab`, `Theme-Lab-*`, `Inkwell-*` (alphanumerics and `-`)
+- [x] SEC-002 (medium) GitHub Actions pinned to commit SHAs (checkout v4.4.0, setup-node v4.4.0, action-gh-release v2.6.2); `persist-credentials: false`; Dependabot keeps pins current
+- [x] SEC-003 (low) `ci.yml` declares `permissions: contents: read`
+- [x] SEC-004 (low) palette `@variant`/`@description` validated (`checkMeta`) so a palette can't close the header comment and inject CSS; tests added
+- [x] SEC-005 (low) `--variant` / `LAB_VARIANT` limited to `[a-z0-9-]` (shell uses POSIX classes: `a-z` ranges match capitals under macOS sh locale collation)
+- [ ] When public: GitHub tag protection rule for `v*` so only the owner can trigger a release (owner)
+
 ## Decisions
 
 - Name: **Inkwell** (no clash among 628 marketplace packages or on GitHub, checked 2026-09-29). Variants are palettes: Slate first; Blue and Mono planned.

@@ -13,6 +13,8 @@ import uuid
 
 HERE = pathlib.Path(__file__).parent
 VARIANT = os.environ.get("LAB_VARIANT", "slate")
+if not re.fullmatch(r"[a-z0-9-]+", VARIANT):
+    raise SystemExit(f"invalid LAB_VARIANT {VARIANT!r}: use a palette id like slate")
 CSS = (HERE.parent.parent / "themes" / f"inkwell-{VARIANT}.css").read_text()
 
 

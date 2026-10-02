@@ -10,3 +10,5 @@
 8. `npm run package` and inspect `dist/*.zip`: it should hold `package.json`, `themes/`, `assets/icon.png`, README, LICENSE, CHANGELOG, and the screenshots.
 9. Commit `chore(release): vX.Y.Z` and tag `vX.Y.Z`. Pushing the tag runs `.github/workflows/publish.yml`, which checks that the tag matches `package.json`, runs the tests, and attaches the zip to a GitHub release. Push only when the owner decides to publish.
 10. Marketplace: follow `marketplace/README.md` (set the real `repo`, then open the PR with `manifest.json` + `icon.png`).
+
+Once the repo is on GitHub, add a tag protection rule (or ruleset) for `v*`: pushing such a tag publishes a release.

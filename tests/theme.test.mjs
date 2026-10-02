@@ -7,7 +7,7 @@ import {
   MAPPING_SELECTOR, LIGHT_SELECTOR, DARK_SELECTOR,
   SHUI_TOKENS, LX_VARS, LS_VARS, DEAD_SELECTORS, IMPORTANT_ALLOWED,
 } from './_lib.mjs'
-import { variants, buildVariant, themeEntries, themePath } from '../build.mjs'
+import { variants, buildVariant, themeEntries, themePath, checkMeta } from '../build.mjs'
 
 const VARIANTS = await variants()
 const base = await read('src/base.css')
@@ -23,6 +23,18 @@ const resolve = (value, palette) => {
   }
   return v
 }
+
+describe('palette metadata (copied into the CSS header comment and package.json)', () => {
+  test('accepts plain names and descriptions', () => {
+    assert.equal(checkMeta('Deep slate and oxblood on Apple system greys', 'description'), 'Deep slate and oxblood on Apple system greys')
+    assert.equal(checkMeta("Blue & ink, no. 2 (cool) — muted", 'description'), "Blue & ink, no. 2 (cool) — muted")
+  })
+  for (const bad of ['Mono */ body { display: none } /*', 'a\\2f', 'x{y}', '<script>', '"quoted"', 'back`tick']) {
+    test(`rejects ${JSON.stringify(bad)}`, () => {
+      assert.throws(() => checkMeta(bad, 'variant'), /@variant/)
+    })
+  }
+})
 
 test('there is at least one variant, and slate is one of them', () => {
   assert.ok(VARIANTS.some((v) => v.id === 'slate'), `variants: ${VARIANTS.map((v) => v.id)}`)

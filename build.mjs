@@ -16,10 +16,21 @@ const PALETTES = path.join(ROOT, 'src', 'palettes')
 
 export const themePath = (id) => `themes/inkwell-${id}.css`
 
+// Palette metadata is copied into the generated CSS header comment and into package.json.
+// Allow only plain text, so a palette can never close the comment (`*/`) and inject rules.
+const META_ALLOWED = /^[\p{L}\p{N} .,&()'’—–:+-]{1,120}$/u
+
+export function checkMeta(value, key) {
+  if (!META_ALLOWED.test(value)) {
+    throw new Error(`palette @${key} ${JSON.stringify(value)} may only contain letters, digits, spaces and . , & ( ) ' — – : + -`)
+  }
+  return value
+}
+
 const meta = (css, key) => {
   const m = new RegExp(`@${key}\\s+(.+)`).exec(css)
   if (!m) throw new Error(`palette is missing @${key}`)
-  return m[1].trim()
+  return checkMeta(m[1].trim(), key)
 }
 
 /** [{id, name, description}] sorted by id; slate first so it is the default listing. */
