@@ -23,7 +23,7 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 - Flashcard rating buttons: Again red, Hard orange, Good green, Easy blue (palette soft fill + text, AA in both modes). They were grey because the outline-button rule hid core's per-rating colours.
 - Videos at their default size fill the block width: embeds (`{{video}}`, YouTube) at 16:9 and uploaded videos at their own aspect ratio. Resized videos (`w=…` in the macro, or a dragged size) keep their width.
 - Image assets without a saved size display at 640px (core default 250px), scaled down to fit narrow blocks; resized images keep their size.
-- Light-mode icon colours meet WCAG 3:1: green `#1f9a40` (Done, TIP icon) and orange `#c96a00` (High priority, WARNING icon), on the page and on their callout fills.
+- Light-mode icon colours meet WCAG 3:1: green `#1f9a40` (Done, TIP icon), orange `#c96a00` (High priority, WARNING icon) and red `#f2352a` (CAUTION icon), on the page and on their callout fills.
 - Pink block background and highlight colour now differ from red: rose `#f9d4e6` (light), plum `#57203f` (dark).
 - Table view: long titles in the Name column wrap and rows grow to fit (core caps every row at 33px and clips the rest). The table grows with its rows, so tall rows, such as a `url` cover image, no longer spill under "+ New" or into a scroll box inside the table, and a jump straight to the bottom reaches the last row. Row separators are drawn as an inset shadow, because a 1px border on a grown row could vanish under app zoom (1.1x to 1.33x).
 - Tag chips stay beside the block title in hover previews, the right sidebar and nested blocks down to 360px of block width (core stacks them below 600px).

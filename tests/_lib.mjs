@@ -152,7 +152,7 @@ export const TEXT_PAIRS = [
 
 // Icon colours need WCAG 3:1 (non-text) on the page and on their callout fill.
 // Red (CAUTION icon, 2.95:1 on its fill in light mode) is tracked as T29.
-export const ICON_COLOURS = ['green', 'orange']
+export const ICON_COLOURS = ['green', 'orange', 'red']
 
 /** Hue in degrees (0-360) of a #rrggbb colour. */
 export const hue = (hex) => {

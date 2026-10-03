@@ -26,7 +26,7 @@ Status: `[ ]` todo · `[~]` in progress · `[x]` done. Newest decisions at the b
 - [x] T32 (shipped 2026-10-03; owner confirmed in the desktop app) Table rows taller than 33px (a `url` cover image, owner report with a screenshot; also T27 wrapped titles) overflowed the table: the row grew but the image ran under "+ New" and was clipped by a scroll box inside the table. Cause: `:fixed-item-height 33` (views.cljs:2762) makes react-virtuoso skip row measurement and write the scroller height inline as rows x 33px; `.ls-table-rows` has `overflow-x: auto`, so it also clips vertically. Fix: scroller `height: auto !important`, viewport `position: relative; height: auto` (inline styles, hence `!important`). Live-verified on desktop 2.0.1, throwaway graph `Inkwell-Cover` (Book tag, 154 rows, covers on every 5th): before, footer 161px above the last row bottom and 124px of inner scroll; after, footer flush below the last row, no inner scroll, 19-step scroll scan with 0 gaps/overlaps, one jump to the bottom reaches the last row (was 3 short). All pages table unchanged (33px rows)
 - [x] T33 (shipped 2026-10-03; owner confirmed in the desktop app) Missing row separator under a wrapped row above a cover row (owner screenshot). Cause: grown rows have fractional heights; under app zoom Chrome snaps a 1px `border-bottom` to nothing (reproduced with CSS zoom 1.1/1.25/1.3/1.33, none at 1.0). Not the wrapper's overflow, not the opaque row background (both tested). Fix: border colour transparent (keeps the 1px gap) + `box-shadow: inset 0 -1px 0 hsl(var(--border))` on the row and on `.sticky-columns` (pinned columns paint an opaque background over the row's shadow). Live: separators present at zoom 0.9 to 2, light and dark, pinned and unpinned; scroll scan still clean
 - [ ] T24 Community feedback round after release (owner)
-- [~] T09 Marketplace assets: `assets/icon.png` (done), screenshot(s) light + dark (todo)
+- [x] T09 Marketplace assets: `assets/icon.png` and light + dark screenshots (done as M2)
 - [ ] T12 Load as an unpacked plugin in Developer mode; confirm both themes register and apply (no `main`, no `effect` key: theme-only package, LSPlugin.core.ts:1038)
 - [ ] T10 Release: version bump, CHANGELOG date, tag v0.1.0 (push only when the owner says so)
 - [ ] T11 Marketplace submission (manifest PR to logseq/marketplace) — owner decision
@@ -51,8 +51,8 @@ Punch list agreed with the owner; applied in the recommended order.
 - [x] M2 Light + dark screenshots (`assets/screenshots/inkwell-slate-{light,dark}.png`, 1440×757) from app.logseq.com 2.0.1, `InkWell-Lab` web graph, showcase page "Weekly Review"; shown in the README; test requires them; included in the release zip
 - [x] B1 WCAG AA text contrast: `TEXT_PAIRS` (31 text/background pairs, translucent fills composited onto the page) ≥ 4.5:1 in both modes. All pass; tightest: light label-2 on sidebar 4.54, dark label-2 on popover 4.85. Mutation-checked
 - [x] T25 (shipped 2026-10-03, owner approved after a Chrome preview) Light-mode icon colours: green #34c759 → #1f9a40 (page 3.65, TIP fill 3.26), orange #ff9500 → #c96a00 (page 3.79, WARNING fill 3.38). Test: icons ≥ 3:1 on page and callout fill, both modes
-- [ ] T29 Light-mode red CAUTION icon #ff3b30 is 2.95:1 on its fill (page 3.55). Candidate #f2352a (page 3.95, fill 3.28). Needs owner approval; then add 'red' to ICON_COLOURS
-- [ ] B2 Distinct pink highlight (= T19) (step 3, optional)
+- [x] T29 (shipped 2026-10-03, owner approved) Light-mode red CAUTION icon #ff3b30 was 2.95:1 on its fill (page 3.55); now #f2352a (page 3.95, fill 3.28). 'red' added to ICON_COLOURS
+- [x] B2 Distinct pink highlight: done as T19
 - [ ] M4 GitHub home: `repository` in package.json, real `repo` in the manifest, push (owner)
 
 ## Security audit (2026-10-01)
