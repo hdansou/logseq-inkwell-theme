@@ -5,7 +5,7 @@ import path from 'node:path'
 import {
   ROOT, read, rules, declarations, ruleFor, isChannels, tokensUsed, contrast,
   MAPPING_SELECTOR, LIGHT_SELECTOR, DARK_SELECTOR,
-  SHUI_TOKENS, LX_VARS, LS_VARS, DEAD_SELECTORS, IMPORTANT_ALLOWED,
+  SHUI_TOKENS, LX_VARS, LS_VARS, DEAD_SELECTORS, IMPORTANT_ALLOWED, CORE_HOVER_OVERRIDES,
 } from './_lib.mjs'
 import { variants, buildVariant, themeEntries, themePath, checkMeta } from '../build.mjs'
 
@@ -81,6 +81,12 @@ for (const variant of VARIANTS) {
         assert.ok(ratio >= 1.3, `--ink-hover vs --ink-float contrast ${ratio.toFixed(2)} < 1.3`)
       })
     }
+
+    test('overrides every core hover rule that paints rows as dark as the popover', () => {
+      const painted = rules(css).filter((r) => /background:\s*var\(--ink-hover\)/.test(r.body))
+        .flatMap((r) => r.selector.split(/,\s*/))
+      assert.deepEqual(CORE_HOVER_OVERRIDES.filter((sel) => !painted.includes(sel)), [])
+    })
 
     test('only light/dark activation — Logseq never sets a custom data-theme name', () => {
       const names = [...css.matchAll(/data-theme="([^"]+)"/g)].map((m) => m[1])

@@ -174,6 +174,10 @@ input[type="checkbox"].form-checkbox { color: var(--ink-tint); }
 .cp__select-main .menu-link.chosen, .cp__select-main .menu-link.chosen p,
 .dark .cp__select-main .menu-link.chosen, .dark .cp__select-main .menu-link.chosen p { background: var(--ink-hover); color: var(--ink-label); }
 .cp__select-main .menu-link.chosen p, .dark .cp__select-main .menu-link.chosen p { background: transparent; }
+/* with a non-default accent colour, core (shui.css) paints focused menu items and the themes dialog rows from
+   html:not([data-color=logseq]) … with --lx-gray-04 / --lx-accent-01, as dark as the popover in dark mode (0,3,1 / 0,4,1) */
+html:not([data-color=logseq]) .ui__dropdown-menu-item:focus, html:not([data-color=logseq]) .ui__dropdown-menu-item.is-active,
+html[data-theme] .cp__themes-installed .it:hover, html[data-theme] .cp__themes-installed .it.is-active { background: var(--ink-hover); color: var(--ink-label); }
 /* Base UI menus and selects highlight with data-[highlighted]:bg-muted, too faint on a popover in dark mode */
 .ui__dropdown-menu-item[data-highlighted], .ui__dropdown-menu-checkbox-item[data-highlighted], .ui__dropdown-menu-radio-item[data-highlighted],
 .ui__dropdown-menu-sub-trigger[data-highlighted], .ui__dropdown-menu-sub-trigger[data-open], .ui__context-menu-item[data-highlighted],

@@ -76,6 +76,22 @@ export const TOKEN_PREFIX = '--ink-'
 export const tokensUsed = (css) =>
   [...new Set([...stripComments(css).matchAll(/var\((--ink-[\w-]+)\)/g)].map((m) => m[1]))].sort()
 
+// Core hover/active rules that paint rows with --lx-gray-04 or --lx-accent-01. In dark mode those
+// steps are as dark as, or darker than, the popover, so the highlight disappears. Each must be
+// matched (same or higher specificity) by a rule painting --ink-hover. Selectors are written
+// as they appear in base.css.
+export const CORE_HOVER_OVERRIDES = [
+  // resources/css/shui.css: html:not([data-color=logseq]) .ui__dropdown-menu-item:focus (0,3,1)
+  'html:not([data-color=logseq]) .ui__dropdown-menu-item:focus',
+  'html:not([data-color=logseq]) .ui__dropdown-menu-item.is-active',
+  // resources/css/shui.css: html:not([data-color=logseq]) .cp__themes-installed .it:hover (0,4,1)
+  'html[data-theme] .cp__themes-installed .it:hover',
+  'html[data-theme] .cp__themes-installed .it.is-active',
+  // common.css / select.cljs: chosen rows in filter lists and autocomplete
+  '#ui__ac-inner .menu-link.chosen',
+  '.dark .cp__select-main .menu-link.chosen',
+]
+
 // !important only where core itself uses it or sets the value via a utility class.
 export const IMPORTANT_ALLOWED = [
   '.bullet-link-wrap:hover > .bullet-container:not(.typed-list) .bullet',
