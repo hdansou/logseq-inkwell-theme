@@ -4,7 +4,7 @@ Files for the pull request to [logseq/marketplace](https://github.com/logseq/mar
 
 Before that:
 
-- set `repo` to the real `owner/repo` (it is `OWNER/…` until the GitHub home is chosen; `npm test` fails on the placeholder once `package.json` has a `repository`)
+- `repo` is `hdansou/logseq-inkwell-theme`; `npm test` checks it matches `repository` in `package.json`
 - publish a release first (`git tag vX.Y.Z && git push --tags`), so the zip the installer downloads exists
 
 `effect` is left off on purpose: a theme-only package runs no code, and the marketplace asks plugins not to enable it without need.

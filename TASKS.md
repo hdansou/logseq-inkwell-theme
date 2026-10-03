@@ -57,7 +57,7 @@ Punch list agreed with the owner; applied in the recommended order.
 - [x] T29 (shipped 2026-10-03, owner approved) Light-mode red CAUTION icon #ff3b30 was 2.95:1 on its fill (page 3.55); now #f2352a (page 3.95, fill 3.28). 'red' added to ICON_COLOURS
 - [x] B2 Distinct pink highlight: done as T19
 - [x] Pass 2 (2026-10-03): C1 README compatibility line current; C2 README coverage lists media, tag chips, menu highlights, tables, flashcards; C4 theme header verified date 2026-10-03; C5 TESTING style id `ink-test`; C6 TESTING: own web graph instead of Demo, second desktop instance + zoom check; C3 screenshots re-taken after T25/T29 (app.logseq.com 2.0.1, InkWell-Lab "Weekly Review", 1440×757; the T26/T27 long test task moved to Long Table Test first). Nothing in A/B/D; E = M4 (owner)
-- [ ] M4 GitHub home: `repository` in package.json, real `repo` in the manifest, push (owner)
+- [x] M4 (2026-10-03) GitHub home: public repo hdansou/logseq-inkwell-theme; `repository`/`homepage`/`bugs` in package.json, real `repo` in the manifest, main pushed
 
 ## Security audit (2026-10-01)
 

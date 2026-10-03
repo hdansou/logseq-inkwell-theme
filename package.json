@@ -4,6 +4,14 @@
   "description": "Quiet, ink-toned themes for Logseq DB graphs, in light and dark. Slate: deep slate and oxblood on Apple system greys.",
   "author": "Danzu",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hdansou/logseq-inkwell-theme.git"
+  },
+  "homepage": "https://github.com/hdansou/logseq-inkwell-theme#readme",
+  "bugs": {
+    "url": "https://github.com/hdansou/logseq-inkwell-theme/issues"
+  },
   "keywords": [
     "logseq",
     "logseq-plugin",
