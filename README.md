@@ -21,7 +21,7 @@ More variants (blue, monochrome) are planned; see [docs/DESIGN.md](docs/DESIGN.m
 
 ## Install
 
-**As a plugin theme.** Once published, install _Inkwell_ from the Marketplace › Themes, then pick a variant, e.g. **Inkwell Slate Light** or **Inkwell Slate Dark**. To load a local checkout, turn on Developer mode, then Plugins › Load unpacked plugin › choose this folder.
+**As a plugin theme.** Once published, install _Inkwell theme_ from the Marketplace › Themes, then pick a variant, e.g. **Inkwell Slate Light** or **Inkwell Slate Dark**. To load a local checkout, turn on Developer mode, then Plugins › Load unpacked plugin › choose this folder.
 
 **As custom.css.** Settings › General › Custom theme › Edit custom.css, paste the whole of one variant file, e.g. [`themes/inkwell-slate.css`](themes/inkwell-slate.css), and save. One file styles both light and dark mode.
 

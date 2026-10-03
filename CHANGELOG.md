@@ -4,6 +4,10 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 
 ## [Unreleased]
 
+### Changed
+
+- The plugin is listed as **Inkwell theme** (was "Inkwell"); the theme names stay Inkwell Slate Light / Dark.
+
 ## [1.0.0] - 2026-10-03
 
 ### Added
