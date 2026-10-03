@@ -89,6 +89,11 @@ describe('src/base.css', () => {
     assert.match(r?.body ?? '', /background-color:\s*transparent/)
   })
 
+  test('property chips use the translucent fill, not --ls-secondary-background-color (black pills in dark mode)', () => {
+    const sel = '.ls-block .positioned-properties.block-below :is(.bottom-property-pill, .bottom-property-control-btn, .bottom-property-control-btn:hover)'
+    assert.match(rules(base).find((r) => r.selector === sel)?.body ?? '', /background-color:\s*var\(--ink-fill-strong\)/)
+  })
+
   test('the table list grows with its rows (core fixes it at rows x 33px, so taller rows overflow under "+ New")', () => {
     const body = (sel) => rules(base).find((r) => r.selector === sel)?.body ?? ''
     assert.match(body(TABLE_LIST_INLINE_STYLED[0]), /height:\s*auto\s*!important/)

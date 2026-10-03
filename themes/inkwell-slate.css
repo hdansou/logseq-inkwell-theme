@@ -189,6 +189,9 @@ a.external-link::after { content: " \2197"; color: var(--ink-label-2); font-size
 /* ---------- properties ---------- */
 .ls-block .ls-properties-area { background: var(--ink-fill); border-radius: 10px; padding: 6px 10px; }
 .property-key-inner, a.property-k { color: var(--ink-label-2); }
+/* property chips under a block (Scheduled, Deadline, rating…): core paints them --ls-secondary-background-color
+   (= --ink-bg), black pills on the dark page. A translucent fill lifts them in dark and stays soft in light. */
+.ls-block .positioned-properties.block-below :is(.bottom-property-pill, .bottom-property-control-btn, .bottom-property-control-btn:hover) { background-color: var(--ink-fill-strong); }
 
 /* ---------- highlights ---------- */
 mark { background: var(--ink-hl-yellow); color: inherit; border-radius: 3px; padding: 1px 2px; }
