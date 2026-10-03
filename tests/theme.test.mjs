@@ -5,7 +5,7 @@ import path from 'node:path'
 import {
   ROOT, read, rules, declarations, ruleFor, isChannels, tokensUsed, contrast, luminance,
   MAPPING_SELECTOR, LIGHT_SELECTOR, DARK_SELECTOR,
-  SHUI_TOKENS, LX_VARS, LS_VARS, DEAD_SELECTORS, IMPORTANT_ALLOWED, CORE_HOVER_OVERRIDES, RATING_COLOURS,
+  SHUI_TOKENS, LX_VARS, LS_VARS, DEAD_SELECTORS, IMPORTANT_ALLOWED, CORE_HOVER_OVERRIDES, RATING_COLOURS, TEXT_PAIRS, over,
 } from './_lib.mjs'
 import { variants, buildVariant, themeEntries, themePath, checkMeta } from '../build.mjs'
 
@@ -108,6 +108,17 @@ for (const variant of VARIANTS) {
           assert.ok(away, `--ink-a0${n} (${a}) is on the wrong side of --ink-surface in ${mode}`)
           assert.ok(contrast(a, palette['--ink-surface']) >= 1.08, `--ink-a0${n} too close to the page`)
         }
+      })
+    }
+
+    for (const [mode, palette] of [['light', light], ['dark', { ...light, ...dark }]]) {
+      test(`text meets WCAG AA (4.5:1) on every surface it sits on in ${mode} mode`, () => {
+        const failures = TEXT_PAIRS.flatMap(([fg, bg, base]) => {
+          const back = base ? over(palette[`--ink-${bg}`], palette[`--ink-${base}`]) : palette[`--ink-${bg}`]
+          const ratio = contrast(palette[`--ink-${fg}`], back)
+          return ratio >= 4.5 ? [] : [`${fg} on ${bg}${base ? ` over ${base}` : ''}: ${ratio.toFixed(2)}`]
+        })
+        assert.deepEqual(failures, [])
       })
     }
 

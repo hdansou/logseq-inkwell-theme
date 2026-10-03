@@ -15,6 +15,7 @@ Run `npm run build` first whenever `src/` changed; the tests fail if a generated
 - the full `--lx-*` scales
 - `--left-sidebar-bg-color` set where core defines it
 - no selectors known to be dead in DB builds (Radix, tippy, `cp__palette`, `data-bg-color`, `marker-switch`, …)
+- text contrast ≥ 4.5:1 for every pair in `TEXT_PAIRS`, in both modes
 - `!important` only in the allowed places
 - `package.json` registering every variant in light and dark, as the build would
 

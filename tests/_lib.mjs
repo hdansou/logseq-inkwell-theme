@@ -119,3 +119,25 @@ export const contrast = (a, b) => {
   const [x, y] = [luminance(a), luminance(b)].sort((m, n) => n - m)
   return (x + 0.05) / (y + 0.05)
 }
+
+/** Composite a #rrggbbaa colour over an opaque #rrggbb base; returns #rrggbb. */
+export const over = (fg, base) => {
+  const h = fg.replace('#', '')
+  if (h.length !== 8) return fg
+  const a = parseInt(h.slice(6, 8), 16) / 255
+  const ch = (hex, i) => parseInt(hex.replace('#', '').slice(i, i + 2), 16)
+  return '#' + [0, 2, 4].map((i) => Math.round(ch(h, i) * a + ch(base, i) * (1 - a)).toString(16).padStart(2, '0')).join('')
+}
+
+// Text that must meet WCAG AA (4.5:1). Each entry: [text token, background token, base for translucent fills].
+// Decorative tokens are exempt: --ink-label-3 (bullets, brackets, link underlines, the cancelled-task icon).
+export const TEXT_PAIRS = [
+  ...['surface', 'bg', 'sidebar', 'float', 'hover', 'tint-soft'].map((b) => ['label', b]),
+  ['label', 'fill', 'surface'],          // code, properties, blockquote
+  ['label', 'fill-strong', 'surface'],   // tag pills, secondary buttons
+  ...['blue-soft', 'green-soft', 'purple-soft', 'orange-soft', 'red-soft'].map((b) => ['label', b]),  // callouts
+  ...['hl-yellow', 'hl-green', 'hl-blue', 'hl-purple', 'hl-red', 'hl-gray'].map((b) => ['label', b]),  // highlights, block backgrounds
+  ...['surface', 'sidebar', 'float'].map((b) => ['label-2', b]),  // secondary text, property keys, headers
+  ['accent', 'surface'], ['accent', 'float'],  // today in the date picker, cloze
+  ['on-tint', 'tint'],                          // primary buttons, Decision callout
+]

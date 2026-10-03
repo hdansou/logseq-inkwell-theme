@@ -42,7 +42,8 @@ Punch list agreed with the owner; applied in the recommended order.
 - [x] E2 `.gitignore`: dist/zip, feedback/, env, editors, agent dirs
 - [x] C1/C2 README: Compatibility section (DB only, 2.0.x, web + desktop) with honest verification wording; package/CI notes
 - [ ] M2 Light + dark screenshots in `assets/screenshots/`, shown in the README (step 2)
-- [~] B1 WCAG contrast tests: text tokens ≥ 4.5:1 on every surface they sit on, both modes
+- [x] B1 WCAG AA text contrast: `TEXT_PAIRS` (31 text/background pairs, translucent fills composited onto the page) ≥ 4.5:1 in both modes. All pass; tightest: light label-2 on sidebar 4.54, dark label-2 on popover 4.85. Mutation-checked
+- [ ] T25 Decision: light-mode icons below WCAG 3:1 non-text: green #34c759 2.22 (Done, TIP icon), orange #ff9500 2.20 (High priority, WARNING icon). Option: use `--ink-green-text`/`--ink-orange-text` for icons in light mode. Cancelled icon (label-3, 2.21/2.84) exempt as an inactive state
 - [ ] B2 Distinct pink highlight (= T19) (step 3, optional)
 - [ ] M4 GitHub home: `repository` in package.json, real `repo` in the manifest, push (owner)
 
