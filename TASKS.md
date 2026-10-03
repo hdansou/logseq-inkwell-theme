@@ -17,7 +17,8 @@ Status: `[ ]` todo · `[~]` in progress · `[x]` done. Newest decisions at the b
 - [x] T21 Feedback (2026-10-02): plugins toolbar menu and header "…" menu, hovered item invisible in dark mode. Cause: with a non-default accent, shui.css paints `html:not([data-color=logseq]) .ui__dropdown-menu-item:focus` (0,3,1) with `--lx-gray-04`, which equals `--ink-float` (#2c2c2e) in dark. Overridden, and the themes dialog rows (`.cp__themes-installed .it`, `bg-accent-01`) too; test `CORE_HOVER_OVERRIDES` added. Not yet verified live (Chrome extension disconnected)
 - [x] T22 (2026-10-02; owner confirmed in the desktop app 2026-10-03) Re-spaced scales. Dark grey 04-07 #3f3f42/#47474a/#4f4f52/#5a5a5d (04 now 1.31:1 on the popover, was 1.00), dark accent 01-07 lifted above the page (01 #252e2e, was #111a1a, darker than the page), light grey 04/05 #e3e3e8/#dcdce1, light accent 01/02 #f1f6f6/#e8f0f0. Scale contract tests added. Original note: the dark scale itself puts `--lx-gray-04` = popover colour and `--lx-accent-01/02` darker than the page, so any core hover using those steps vanishes or darkens (e.g. ghost-button hover `bg-accent-01` under a non-default accent). Consider re-spacing the dark grey/accent scales (needs a live pass)
 - [x] T23 (owner confirmed in the desktop app 2026-10-03) Flashcard rating colours (Anki convention): Again red, Hard orange, Good green, Easy blue, as palette `-soft` fill + `-text` colour (AA ≥ 4.5:1 in both modes). Root cause of the grey buttons: the theme's outline-button rule (`.ui__button.as-outline`) hid core's per-rating colours. `#card-answers` stays neutral
-- [ ] T08 Collect human feedback from the Theme-Lab graph (`npm run lab:feedback`) and apply it
+- [x] T08 Owner's Theme-Lab pass (closed 2026-10-03; findings fixed in T20, T21, T22, T23)
+- [ ] T24 Community feedback round after release (owner)
 - [~] T09 Marketplace assets: `assets/icon.png` (done), screenshot(s) light + dark (todo)
 - [ ] T12 Load as an unpacked plugin in Developer mode; confirm both themes register and apply (no `main`, no `effect` key: theme-only package, LSPlugin.core.ts:1038)
 - [ ] T10 Release: version bump, CHANGELOG date, tag v0.1.0 (push only when the owner says so)
@@ -41,7 +42,7 @@ Punch list agreed with the owner; applied in the recommended order.
 - [x] E2 `.gitignore`: dist/zip, feedback/, env, editors, agent dirs
 - [x] C1/C2 README: Compatibility section (DB only, 2.0.x, web + desktop) with honest verification wording; package/CI notes
 - [ ] M2 Light + dark screenshots in `assets/screenshots/`, shown in the README (step 2)
-- [ ] B1 WCAG AA contrast test for text tokens (step 3, optional)
+- [~] B1 WCAG contrast tests: text tokens ≥ 4.5:1 on every surface they sit on, both modes
 - [ ] B2 Distinct pink highlight (= T19) (step 3, optional)
 - [ ] M4 GitHub home: `repository` in package.json, real `repo` in the manifest, push (owner)
 
