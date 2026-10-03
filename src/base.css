@@ -160,6 +160,10 @@ input[type="checkbox"].form-checkbox { color: var(--ink-tint); }
 .left-sidebar-inner a.item:hover { background: var(--ink-fill); }
 .left-sidebar-inner a.item.active { background: var(--ink-tint-soft); font-weight: 600; }
 .left-sidebar-inner a.item.active .ui__icon { color: var(--ink-tint); opacity: 1; }
+
+/* right sidebar top bar (Contents, Page graph, Help): core paints these buttons --ls-secondary-background-color (= --ink-bg),
+   black on the grey bar in dark mode. Let them sit on the bar; core's .button:hover fill still applies. */
+.cp__right-sidebar-topbar .cp__right-sidebar-settings-btn:not(:hover) { background-color: transparent; }
 .left-sidebar-inner .ui__icon { color: var(--ink-label-2); }
 
 /* ---------- floating surfaces (Base UI, not Radix) ---------- */

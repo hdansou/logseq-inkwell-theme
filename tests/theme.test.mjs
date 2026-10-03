@@ -84,6 +84,11 @@ describe('src/base.css', () => {
     assert.match(pinned, /box-shadow:\s*inset 0 -1px 0 hsl\(var\(--border\)\)/, 'pinned columns paint an opaque background over the row shadow')
   })
 
+  test('right sidebar top bar buttons sit on the bar, not on --ls-secondary-background-color (black pills in dark mode)', () => {
+    const r = rules(base).find((x) => x.selector === '.cp__right-sidebar-topbar .cp__right-sidebar-settings-btn:not(:hover)')
+    assert.match(r?.body ?? '', /background-color:\s*transparent/)
+  })
+
   test('the table list grows with its rows (core fixes it at rows x 33px, so taller rows overflow under "+ New")', () => {
     const body = (sel) => rules(base).find((r) => r.selector === sel)?.body ?? ''
     assert.match(body(TABLE_LIST_INLINE_STYLED[0]), /height:\s*auto\s*!important/)
