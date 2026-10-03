@@ -217,6 +217,16 @@ describe('package.json', async () => {
     assert.equal(pkg.logseq.id, pkg.name)
   })
 
+  test('README shows light and dark screenshots that exist (marketplace requires an image)', async () => {
+    const readme = await read('README.md')
+    const images = [...readme.matchAll(/!\[[^\]]*\]\(([^)]+)\)/g)].map((m) => m[1])
+    for (const mode of ['light', 'dark']) {
+      const img = images.find((p) => p.includes(mode))
+      assert.ok(img, `README has no ${mode} screenshot`)
+      assert.ok(existsSync(path.join(ROOT, img)), `${img} does not exist`)
+    }
+  })
+
   test('the marketplace manifest agrees with package.json', async () => {
     const m = JSON.parse(await read('marketplace/manifest.json'))
     assert.equal(m.title, pkg.logseq.title)

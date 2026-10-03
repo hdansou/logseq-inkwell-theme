@@ -41,7 +41,7 @@ Punch list agreed with the owner; applied in the recommended order.
 - [x] E1 `.github/workflows/ci.yml` runs `npm test` on push/PR
 - [x] E2 `.gitignore`: dist/zip, feedback/, env, editors, agent dirs
 - [x] C1/C2 README: Compatibility section (DB only, 2.0.x, web + desktop) with honest verification wording; package/CI notes
-- [ ] M2 Light + dark screenshots in `assets/screenshots/`, shown in the README (step 2)
+- [x] M2 Light + dark screenshots (`assets/screenshots/inkwell-slate-{light,dark}.png`, 1440×757) from app.logseq.com 2.0.1, `InkWell-Lab` web graph, showcase page "Weekly Review"; shown in the README; test requires them; included in the release zip
 - [x] B1 WCAG AA text contrast: `TEXT_PAIRS` (31 text/background pairs, translucent fills composited onto the page) ≥ 4.5:1 in both modes. All pass; tightest: light label-2 on sidebar 4.54, dark label-2 on popover 4.85. Mutation-checked
 - [ ] T25 Decision: light-mode icons below WCAG 3:1 non-text: green #34c759 2.22 (Done, TIP icon), orange #ff9500 2.20 (High priority, WARNING icon). Option: use `--ink-green-text`/`--ink-orange-text` for icons in light mode. Cancelled icon (label-3, 2.21/2.84) exempt as an inactive state
 - [ ] B2 Distinct pink highlight (= T19) (step 3, optional)

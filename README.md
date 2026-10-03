@@ -2,6 +2,10 @@
 
 Quiet, ink-toned themes for Logseq DB graphs. Each variant comes in light and dark, follows Logseq's own theme switch, and holds whichever accent colour is picked in Settings.
 
+| Light | Dark |
+|---|---|
+| ![Inkwell Slate, light mode](assets/screenshots/inkwell-slate-light.png) | ![Inkwell Slate, dark mode](assets/screenshots/inkwell-slate-dark.png) |
+
 | Variant   | Palette                                                                         |
 | --------- | ------------------------------------------------------------------------------- |
 | **Slate** | Deep slate (`#223B3B`) and one oxblood accent (`#9C2529`) on Apple system greys |

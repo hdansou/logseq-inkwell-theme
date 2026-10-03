@@ -21,4 +21,5 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 - Menus with a non-default accent colour: hovered items in the plugins toolbar menu, the header "…" menu and the themes dialog were painted with a grey equal to the popover in dark mode; they now use `--ink-hover`.
 - Grey and accent scales re-spaced so Logseq's own hover fills show: dark `--lx-gray-04/05` are now clearly lighter than popovers (04 was identical to them) and dark `--lx-accent-01/02` lighter than the page (they were darker, so ghost-button hovers darkened). Dark borders that use grey 06/07 are slightly brighter. Tests enforce the scale rules.
 - Flashcard rating buttons: Again red, Hard orange, Good green, Easy blue (palette soft fill + text, AA in both modes). They were grey because the outline-button rule hid core's per-rating colours.
+- Light and dark screenshots in the README and the release zip.
 - Theme-Lab human test graph (`npm run lab [-- --variant <id>]`, `npm run lab:feedback`).
