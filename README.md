@@ -2,9 +2,11 @@
 
 Quiet, ink-toned themes for Logseq DB graphs. Each variant comes in light and dark, follows Logseq's own theme switch, and holds whichever accent colour is picked in Settings.
 
-| Light | Dark |
-|---|---|
-| ![Inkwell Slate, light mode](assets/screenshots/inkwell-slate-light.png) | ![Inkwell Slate, dark mode](assets/screenshots/inkwell-slate-dark.png) |
+| | Light | Dark |
+|---|---|---|
+| **Typography and tasks** | ![Inkwell Slate, light mode: headings, inline styles, tasks, code and math](assets/screenshots/inkwell-slate-light.png) | ![Inkwell Slate, dark mode: headings, inline styles, tasks, code and math](assets/screenshots/inkwell-slate-dark.png) |
+| **Tables** | ![Inkwell Slate, light mode: a tag table with cover images, tag properties and references](assets/screenshots/inkwell-slate-light-tables.png) | ![Inkwell Slate, dark mode: a tag table with cover images, callouts and block colours](assets/screenshots/inkwell-slate-dark-tables.png) |
+| **Properties and callouts** | ![Inkwell Slate, light mode: property chips, the date picker, callouts and block colours](assets/screenshots/inkwell-slate-light-properties.png) | |
 
 | Variant   | Palette                                                                         |
 | --------- | ------------------------------------------------------------------------------- |

@@ -28,5 +28,5 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 - Table view: long titles in the Name column wrap and rows grow to fit (core caps every row at 33px and clips the rest). The table grows with its rows, so tall rows, such as a `url` cover image, no longer spill under "+ New" or into a scroll box inside the table, and a jump straight to the bottom reaches the last row. Row separators are drawn as an inset shadow, because a 1px border on a grown row could vanish under app zoom (1.1x to 1.33x).
 - Dark mode no longer shows black pills: the right sidebar top bar (Contents, Page graph, Help) sits on the bar, and property chips under a block (Scheduled, Deadline, rating…) use a lifted grey.
 - Tag chips stay beside the block title in hover previews, the right sidebar and nested blocks down to 360px of block width (core stacks them below 600px).
-- Light and dark screenshots in the README and the release zip.
+- Screenshots from the desktop app in the README and the release zip: typography and tasks, tables (light and dark), properties and callouts (light).
 - Theme-Lab human test graph (`npm run lab [-- --variant <id>]`, `npm run lab:feedback`).

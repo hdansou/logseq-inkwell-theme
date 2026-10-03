@@ -1,6 +1,6 @@
 import { describe, test } from 'node:test'
 import assert from 'node:assert/strict'
-import { existsSync } from 'node:fs'
+import { existsSync, readdirSync } from 'node:fs'
 import path from 'node:path'
 import {
   ROOT, read, rules, declarations, ruleFor, isChannels, tokensUsed, contrast, luminance,
@@ -311,6 +311,10 @@ describe('package.json', async () => {
       assert.ok(img, `README has no ${mode} screenshot`)
       assert.ok(existsSync(path.join(ROOT, img)), `${img} does not exist`)
     }
+    // the release zip ships assets/screenshots whole: every file there must be one the README shows, and vice versa
+    const shots = readdirSync(path.join(ROOT, 'assets/screenshots')).map((f) => `assets/screenshots/${f}`)
+    assert.deepEqual(shots.filter((f) => !images.includes(f)), [], 'screenshots the README does not show')
+    assert.deepEqual(images.filter((f) => f.startsWith('assets/screenshots/') && !shots.includes(f)), [], 'README images that do not exist')
   })
 
   test('the marketplace manifest agrees with package.json', async () => {
