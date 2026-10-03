@@ -23,13 +23,13 @@ Every test was checked against a deliberately broken copy of the theme and fails
 
 ## 2. Live check in the browser
 
-Logseq's web app runs an in-memory DB graph ("Demo") that is safe to write to.
+Use a DB graph of your own on the web app (for example `InkWell-Lab`) rather than the built-in Demo graph, whose writes can time out.
 
 1. Open https://app.logseq.com and create a page with the content you changed.
 2. In DevTools, inject the theme without saving it anywhere:
    ```js
    const s = document.createElement("style");
-   s.id = "hs-test";
+   s.id = "ink-test";
    s.textContent = `/* paste themes/inkwell-slate.css */`;
    document.head.appendChild(s);
    ```
@@ -37,6 +37,19 @@ Logseq's web app runs an in-memory DB graph ("Demo") that is safe to write to.
 4. Repeat in dark mode (`await logseq.api.set_theme_mode('dark')`) and under another accent colour (`document.documentElement.dataset.color = 'tomato'`).
 
 Selectors change between Logseq releases. When something doesn't apply, find the element in DevTools and confirm the class in Logseq's source before writing a selector.
+
+### On the desktop app, without touching your own window
+
+Start a second instance of the installed app with its own profile and a debugging port, then drive it from a script (for example Playwright's `chromium.connectOverCDP('http://127.0.0.1:9333')`):
+
+```sh
+/Applications/Logseq-DB.app/Contents/MacOS/Logseq --user-data-dir=/tmp/ink-ud --remote-debugging-port=9333 &
+```
+
+- It opens the last graph you used. Switch to a throwaway graph (`logseq graph create -g <name>`, then All graphs) before writing anything.
+- It shares `~/.logseq` (plugins and plugin preferences) with your own app. Apply a theme without saving the choice: `LSPluginCore.selectTheme(theme, { effect: false, emit: false })`.
+- App zoom changes layout: thin borders can vanish at 110–133%. Check with `document.documentElement.style.zoom = '1.3'`; emulating a higher pixel ratio does not reproduce it.
+- Reloading the page over the debugging port can hang the instance. Swap the theme's `<link>` href with a cache-busting query instead. If it hangs, kill it, and kill its orphaned `db-worker-node` (`--repo logseq_db_<name>`).
 
 ## 3. Human test in the Theme-Lab graph
 

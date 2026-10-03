@@ -15,7 +15,7 @@ More variants (blue, monochrome) are planned; see [docs/DESIGN.md](docs/DESIGN.m
 ## Compatibility
 
 - **DB graphs only**, Logseq 2.0.x, desktop and web. File-based graphs use different markup and are not supported.
-- Checked against Logseq master `9c18a5432b`: automated style checks on Logseq 2.0.1 web (light, dark, four accent colours), plus a first look on the desktop app. A full human review pass is in progress.
+- Checked against Logseq master `9c18a5432b` and live on Logseq 2.0.1, web and desktop: automated style checks in light, dark and four accent colours, plus a full human review pass in the desktop app.
 
 ## Install
 
@@ -32,7 +32,11 @@ More variants (blue, monochrome) are planned; see [docs/DESIGN.md](docs/DESIGN.m
   - highlights and the 7 block background colours
   - callouts (NOTE/TIP/IMPORTANT/WARNING/CAUTION, and PINNED as a Decision callout)
   - quotes, code, task status and priority icons
-- **App surfaces:** left sidebar, command palette, dialogs, popovers and menus, date picker, buttons, inputs, shortcut keycaps.
+  - images and videos: images without a saved size show at 640px, default-sized videos fill the block; resized media keep their size
+  - tag chips stay beside the block title in hover previews and narrow panels
+- **App surfaces:** left sidebar, command palette, dialogs, popovers and menus (with a visible hover and selection highlight), date picker, buttons, inputs, shortcut keycaps.
+- **Table views:** long titles wrap and rows grow to fit, including rows with cover images; row separators stay visible at any app zoom.
+- **Flashcards:** rating buttons in the usual colours (Again red, Hard orange, Good green, Easy blue).
 
 ## Layout
 
