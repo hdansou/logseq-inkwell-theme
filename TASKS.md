@@ -32,7 +32,7 @@ Status: `[ ]` todo · `[~]` in progress · `[x]` done. Newest decisions at the b
 - [x] T09 Marketplace assets: `assets/icon.png` and light + dark screenshots (done as M2)
 - [x] T12 (2026-10-03, desktop 2.0.1) Unpacked plugin: the repo folder is in `~/.logseq/preferences.json` `externals` (how Developer mode records it). In a second app instance it registered with `loaded: true`, no load error, no `main`, and both themes (Inkwell Slate Light, Inkwell Slate Dark) listed with the right mode. Applying each (`selectTheme`, no persist) injected one stylesheet and the palette values (light tint #223b3b, grey-04 #e3e3e8; dark tint #b3c6c6, grey-04 #3f3f42; stock: no `--ink-*`, dark bg #002b36); back to default removed it. The release zip's package.json, themes/inkwell-slate.css and icon are byte-identical to the tested folder
 - [x] T10 (2026-10-03) Released v1.0.0: main pushed (rebased onto the owner's Dependabot merges: checkout 7.0.1, setup-node 7.0.0, action-gh-release 3.0.3), CI green, annotated tag v1.0.0 on 70786f9; Publish workflow attached logseq-inkwell-theme-1.0.0.zip (13 files, package.json and theme byte-identical to the local build). https://github.com/hdansou/logseq-inkwell-theme/releases/tag/v1.0.0
-- [ ] T11 Marketplace submission (manifest PR to logseq/marketplace) — owner decision
+- [~] T11 (2026-10-03) Marketplace PR opened: https://github.com/logseq/marketplace/pull/922 (packages/logseq-inkwell-theme/ manifest.json + icon.png; title "Inkwell theme"). Waiting for review/merge
 
 ## v0.1.0 — rename to Inkwell + variant layout (2026-09-29)
 
