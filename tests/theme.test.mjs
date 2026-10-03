@@ -41,6 +41,15 @@ test('there is at least one variant, and slate is one of them', () => {
 })
 
 describe('src/base.css', () => {
+  test('default-sized image assets display at 640px, scaled to fit, aspect kept (core default 250)', () => {
+    const r = rules(base).find((x) => x.selector === '.ls-block .asset-container > img[width="250"]')
+    assert.ok(r, 'no rule for default-sized images')
+    assert.match(r.body, /width:\s*640px/)
+    assert.match(r.body, /max-width:\s*100%/)
+    assert.match(r.body, /height:\s*auto/)
+    assert.ok(!r.body.includes('!important'))
+  })
+
   test('table Name cells wrap and rows grow (core caps rows, wrappers and cells at 33px)', () => {
     const has = (sel, re) => rules(base).some((r) => r.selector.split(/,\s*/).includes(sel) && re.test(r.body))
     const expected = [

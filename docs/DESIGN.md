@@ -45,6 +45,10 @@ Core stacks a block's title above its tag chips whenever the block is narrower t
 
 Core caps every table row, row wrapper and cell at 33px with overflow hidden, and its virtual list assumes 33px rows. Inkwell lets the Name cell wrap and rows grow: the list still lays rows out in normal flow, so taller rows push the next ones down. Verified on a 155-row table. Known quirk: a jump straight from the top to the bottom of a long table can land about two rows short until the list re-measures; one more scroll reaches the end.
 
+## Images
+
+Core shows an image that has no saved size at 250px. Inkwell shows those at 640px, never wider than the block, keeping the aspect ratio. Images resized by dragging keep their own width. Known: the loading placeholder is still 250px, so a default image grows to 640px once loaded; an image deliberately resized to exactly 250px also shows at 640px.
+
 ## Flashcard ratings
 
 | Button (`id`) | Colour | Fill / text tokens |
