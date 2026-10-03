@@ -41,6 +41,10 @@ The left sidebar's background is `--left-sidebar-bg-color`, which core defines o
 
 Core stacks a block's title above its tag chips whenever the block is narrower than 600px (`@container` in core `block.css`), which hits hover previews, the right sidebar and nested blocks. Inkwell keeps them side by side down to 360px and stacks below that.
 
+## Table view
+
+Core caps every table row, row wrapper and cell at 33px with overflow hidden, and its virtual list assumes 33px rows. Inkwell lets the Name cell wrap and rows grow: the list still lays rows out in normal flow, so taller rows push the next ones down. Verified on a 155-row table. Known quirk: a jump straight from the top to the bottom of a long table can land about two rows short until the list re-measures; one more scroll reaches the end.
+
 ## Flashcard ratings
 
 | Button (`id`) | Colour | Fill / text tokens |

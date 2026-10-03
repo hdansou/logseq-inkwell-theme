@@ -207,6 +207,16 @@ html[data-theme] .cp__themes-installed .it:hover, html[data-theme] .cp__themes-i
 .form-input, .ui__input { border-radius: 10px; border: 1px solid var(--ink-line); background: var(--ink-surface); }
 .form-input:focus, .ui__input:focus { border-color: var(--ink-tint); box-shadow: 0 0 0 3px var(--ink-tint-soft); }
 
+/* table view: wrap the Name cell and let rows grow. Core caps the row wrapper, row and cell at 33px with overflow
+   hidden (table.css) and the list assumes 33px rows (views.cljs :fixed-item-height); it still lays rows out in flow,
+   so taller rows push the next ones down. Known quirk (TASKS T28): a jump from top to bottom of a long table can
+   land ~2 rows short until the list re-measures; one more scroll reaches the end. */
+.ls-table .ls-table-rows div[data-index], .ls-table .ls-table-rows div[data-item-index] { height: auto; min-height: 33px; max-height: none; }
+.ls-table .ls-table-row { height: auto; min-height: 33px; max-height: none; }
+.ls-table .ls-table-cell { max-height: none; }
+.ls-table .ls-table-row .table-block-title div { white-space: normal; }
+.ls-table-cell .table-block-title > .flex-row { min-width: 0; }
+
 /* ---------- code ---------- */
 :not(pre) > code { background: var(--ink-fill); border-radius: 4px; padding: 1px 5px; font-size: 13px; }
 .CodeMirror, pre { background: var(--ink-fill) !important; border-radius: 8px; } /* CodeMirror 5 themes set their own background */

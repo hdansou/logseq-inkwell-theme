@@ -41,6 +41,22 @@ test('there is at least one variant, and slate is one of them', () => {
 })
 
 describe('src/base.css', () => {
+  test('table Name cells wrap and rows grow (core caps rows, wrappers and cells at 33px)', () => {
+    const has = (sel, re) => rules(base).some((r) => r.selector.split(/,\s*/).includes(sel) && re.test(r.body))
+    const expected = [
+      ['.ls-table .ls-table-rows div[data-index]', /height:\s*auto/],
+      ['.ls-table .ls-table-rows div[data-index]', /max-height:\s*none/],
+      ['.ls-table .ls-table-rows div[data-item-index]', /max-height:\s*none/],
+      ['.ls-table .ls-table-row', /max-height:\s*none/],
+      ['.ls-table .ls-table-cell', /max-height:\s*none/],
+      ['.ls-table .ls-table-row .table-block-title div', /white-space:\s*normal/],
+      ['.ls-table-cell .table-block-title > .flex-row', /min-width:\s*0/],
+    ]
+    assert.deepEqual(expected.filter(([sel, re]) => !has(sel, re)).map(([sel, re]) => `${sel} ${re}`), [])
+    const tableRules = rules(base).filter((r) => r.selector.includes('ls-table'))
+    assert.ok(!tableRules.some((r) => r.body.includes('!important')), 'table overrides must win on specificity, not !important')
+  })
+
   test('block rows keep title and tag chips side by side down to 360px (core stacks below 600px)', () => {
     const row = rules(base).find((r) => r.selector === '.ls-block .block-row' && /flex-direction:\s*row/.test(r.body))
     assert.ok(row, 'no .ls-block .block-row { flex-direction: row } rule')
