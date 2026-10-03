@@ -1,6 +1,6 @@
 name: Publish
 
-# Push a tag like v0.1.0 (matching package.json "version") to build the marketplace zip
+# Push a tag like v1.0.0 (matching package.json "version") to build the marketplace zip
 # and attach it to a GitHub release.
 on:
   push:

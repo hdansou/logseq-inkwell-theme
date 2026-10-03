@@ -4,7 +4,7 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 
 ## [Unreleased]
 
-## [0.1.0] - unreleased
+## [1.0.0] - 2026-10-03
 
 ### Added
 
@@ -30,3 +30,6 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 - Tag chips stay beside the block title in hover previews, the right sidebar and nested blocks down to 360px of block width (core stacks them below 600px).
 - Screenshots from the desktop app in the README and the release zip: typography and tasks, tables (light and dark), properties and callouts (light).
 - Theme-Lab human test graph (`npm run lab [-- --variant <id>]`, `npm run lab:feedback`).
+
+[Unreleased]: https://github.com/hdansou/logseq-inkwell-theme/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/hdansou/logseq-inkwell-theme/releases/tag/v1.0.0

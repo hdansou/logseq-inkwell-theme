@@ -2,7 +2,7 @@
 
 Status: `[ ]` todo · `[~]` in progress · `[x]` done. Newest decisions at the bottom of each section.
 
-## v0.1.0 — first release
+## v1.0.0 — first release (planned as 0.1.0; owner chose 1.0.0 on 2026-10-03)
 
 - [x] T01 Verify selectors and variables against Logseq source (master 9c18a5432b) — done in eng-documentation session 2026-09-29
 - [x] T02 Validate live on app.logseq.com 2.0.1 (light, dark, accents logseq/tomato/blue/none) — 4 fixes folded in
@@ -31,7 +31,7 @@ Status: `[ ]` todo · `[~]` in progress · `[x]` done. Newest decisions at the b
 - [ ] T24 Community feedback round after release (owner)
 - [x] T09 Marketplace assets: `assets/icon.png` and light + dark screenshots (done as M2)
 - [x] T12 (2026-10-03, desktop 2.0.1) Unpacked plugin: the repo folder is in `~/.logseq/preferences.json` `externals` (how Developer mode records it). In a second app instance it registered with `loaded: true`, no load error, no `main`, and both themes (Inkwell Slate Light, Inkwell Slate Dark) listed with the right mode. Applying each (`selectTheme`, no persist) injected one stylesheet and the palette values (light tint #223b3b, grey-04 #e3e3e8; dark tint #b3c6c6, grey-04 #3f3f42; stock: no `--ink-*`, dark bg #002b36); back to default removed it. The release zip's package.json, themes/inkwell-slate.css and icon are byte-identical to the tested folder
-- [ ] T10 Release: version bump, CHANGELOG date, tag v0.1.0 (push only when the owner says so)
+- [~] T10 Release: version bumped to 1.0.0 and CHANGELOG dated 2026-10-03; tag v1.0.0 and push it (only when the owner says so)
 - [ ] T11 Marketplace submission (manifest PR to logseq/marketplace) — owner decision
 
 ## v0.1.0 — rename to Inkwell + variant layout (2026-09-29)
