@@ -193,6 +193,13 @@ html[data-theme] .cp__themes-installed .it:hover, html[data-theme] .cp__themes-i
 /* ---------- buttons, inputs ---------- */
 .ui__button.as-solid, .ui__button.as-secondary, .ui__button.as-outline { border-radius: 980px; }
 .ui__button.as-secondary, .ui__button.as-outline { background: var(--ink-fill-strong); color: var(--ink-label); border: 0; }
+/* flashcard ratings (fsrs.cljs #card-*): soft fill + text colour, Anki convention. The ids give (1,1,0), above the
+   outline rule above, which otherwise hides core's per-rating colours. #card-answers (Show answer) stays neutral. */
+.ui__button:is(#card-again, #card-hard, #card-good, #card-easy) { background: var(--rating-soft); color: var(--rating-text); }
+#card-again { --rating-soft: var(--ink-red-soft); --rating-text: var(--ink-red-text); }
+#card-hard { --rating-soft: var(--ink-orange-soft); --rating-text: var(--ink-orange-text); }
+#card-good { --rating-soft: var(--ink-green-soft); --rating-text: var(--ink-green-text); }
+#card-easy { --rating-soft: var(--ink-blue-soft); --rating-text: var(--ink-blue-text); }
 .form-input, .ui__input { border-radius: 10px; border: 1px solid var(--ink-line); background: var(--ink-surface); }
 .form-input:focus, .ui__input:focus { border-color: var(--ink-tint); box-shadow: 0 0 0 3px var(--ink-tint-soft); }
 

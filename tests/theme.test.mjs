@@ -5,7 +5,7 @@ import path from 'node:path'
 import {
   ROOT, read, rules, declarations, ruleFor, isChannels, tokensUsed, contrast, luminance,
   MAPPING_SELECTOR, LIGHT_SELECTOR, DARK_SELECTOR,
-  SHUI_TOKENS, LX_VARS, LS_VARS, DEAD_SELECTORS, IMPORTANT_ALLOWED, CORE_HOVER_OVERRIDES,
+  SHUI_TOKENS, LX_VARS, LS_VARS, DEAD_SELECTORS, IMPORTANT_ALLOWED, CORE_HOVER_OVERRIDES, RATING_COLOURS,
 } from './_lib.mjs'
 import { variants, buildVariant, themeEntries, themePath, checkMeta } from '../build.mjs'
 
@@ -110,6 +110,37 @@ for (const variant of VARIANTS) {
         }
       })
     }
+
+    describe('flashcard rating buttons', () => {
+      const declOf = (id) => Object.assign({}, ...rules(css).filter((r) => r.selector.split(/,\s*/).includes(`#card-${id}`)).map((r) => declarations(r.body)))
+
+      for (const [id, colour] of Object.entries(RATING_COLOURS)) {
+        test(`#card-${id} is ${colour}`, () => {
+          const d = declOf(id)
+          assert.equal(d['--rating-soft'], `var(--ink-${colour}-soft)`)
+          assert.equal(d['--rating-text'], `var(--ink-${colour}-text)`)
+        })
+      }
+
+      test('one shared rule paints all four from --rating-soft / --rating-text', () => {
+        const shared = rules(css).find((r) => /background:\s*var\(--rating-soft\)/.test(r.body) && /color:\s*var\(--rating-text\)/.test(r.body))
+        assert.ok(shared, 'no shared rating rule')
+        for (const id of Object.keys(RATING_COLOURS)) assert.ok(shared.selector.includes(`#card-${id}`), `shared rule misses #card-${id}`)
+      })
+
+      test('the "Show answer" button (#card-answers) stays neutral', () => {
+        assert.ok(!rules(css).some((r) => r.selector.includes('#card-answers')))
+      })
+
+      for (const [mode, palette] of [['light', light], ['dark', { ...light, ...dark }]]) {
+        test(`rating text meets WCAG AA on its fill in ${mode} mode`, () => {
+          for (const colour of Object.values(RATING_COLOURS)) {
+            const ratio = contrast(palette[`--ink-${colour}-text`], palette[`--ink-${colour}-soft`])
+            assert.ok(ratio >= 4.5, `${colour}: ${ratio.toFixed(2)} < 4.5`)
+          }
+        })
+      }
+    })
 
     test('overrides every core hover rule that paints rows as dark as the popover', () => {
       const painted = rules(css).filter((r) => /background:\s*var\(--ink-hover\)/.test(r.body))

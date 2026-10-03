@@ -92,6 +92,10 @@ export const CORE_HOVER_OVERRIDES = [
   '.dark .cp__select-main .menu-link.chosen',
 ]
 
+// Flashcard rating buttons (#card-<rating>, fsrs.cljs) get the palette's soft fill + text colour.
+// Anki convention: failure red, struggle orange, pass green, easy blue.
+export const RATING_COLOURS = { again: 'red', hard: 'orange', good: 'green', easy: 'blue' }
+
 // !important only where core itself uses it or sets the value via a utility class.
 export const IMPORTANT_ALLOWED = [
   '.bullet-link-wrap:hover > .bullet-container:not(.typed-list) .bullet',
