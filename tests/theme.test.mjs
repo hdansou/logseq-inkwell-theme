@@ -5,7 +5,7 @@ import path from 'node:path'
 import {
   ROOT, read, rules, declarations, ruleFor, isChannels, tokensUsed, contrast, luminance,
   MAPPING_SELECTOR, LIGHT_SELECTOR, DARK_SELECTOR,
-  SHUI_TOKENS, LX_VARS, LS_VARS, DEAD_SELECTORS, IMPORTANT_ALLOWED, CORE_HOVER_OVERRIDES, RATING_COLOURS, TEXT_PAIRS, over, ICON_COLOURS, hue,
+  SHUI_TOKENS, LX_VARS, LS_VARS, DEAD_SELECTORS, IMPORTANT_ALLOWED, TABLE_LIST_INLINE_STYLED, CORE_HOVER_OVERRIDES, RATING_COLOURS, TEXT_PAIRS, over, ICON_COLOURS, hue,
 } from './_lib.mjs'
 import { variants, buildVariant, themeEntries, themePath, checkMeta } from '../build.mjs'
 
@@ -72,8 +72,15 @@ describe('src/base.css', () => {
       ['.ls-table-cell .table-block-title > .flex-row', /min-width:\s*0/],
     ]
     assert.deepEqual(expected.filter(([sel, re]) => !has(sel, re)).map(([sel, re]) => `${sel} ${re}`), [])
-    const tableRules = rules(base).filter((r) => r.selector.includes('ls-table'))
+    const tableRules = rules(base).filter((r) => r.selector.includes('ls-table') && !TABLE_LIST_INLINE_STYLED.includes(r.selector))
     assert.ok(!tableRules.some((r) => r.body.includes('!important')), 'table overrides must win on specificity, not !important')
+  })
+
+  test('the table list grows with its rows (core fixes it at rows x 33px, so taller rows overflow under "+ New")', () => {
+    const body = (sel) => rules(base).find((r) => r.selector === sel)?.body ?? ''
+    assert.match(body(TABLE_LIST_INLINE_STYLED[0]), /height:\s*auto\s*!important/)
+    assert.match(body(TABLE_LIST_INLINE_STYLED[1]), /position:\s*relative\s*!important/)
+    assert.match(body(TABLE_LIST_INLINE_STYLED[1]), /height:\s*auto\s*!important/)
   })
 
   test('block rows keep title and tag chips side by side down to 360px (core stacks below 600px)', () => {

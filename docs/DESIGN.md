@@ -43,7 +43,7 @@ Core stacks a block's title above its tag chips whenever the block is narrower t
 
 ## Table view
 
-Core caps every table row, row wrapper and cell at 33px with overflow hidden, and its virtual list assumes 33px rows. Inkwell lets the Name cell wrap and rows grow: the list still lays rows out in normal flow, so taller rows push the next ones down. Verified on a 155-row table. Known quirk: a jump straight from the top to the bottom of a long table can land about two rows short until the list re-measures; one more scroll reaches the end.
+Core caps every table row, row wrapper and cell at 33px with overflow hidden, and its virtual list assumes 33px rows. Inkwell lets the Name cell wrap and rows grow: the list still lays rows out in normal flow, so taller rows push the next ones down. The list is told every row is 33px (`:fixed-item-height`), so it never measures rows and writes its height inline as rows x 33px; taller rows would overflow under "+ New" and into a scroll box inside the table. Inkwell sizes the list's scroller and viewport to their content instead (`!important`, because the heights are inline). Rows the list has not rendered still count 33px each. Verified on a 154-row table with cover images: no gaps or overlaps, and a jump straight to the bottom reaches the last row.
 
 ## Images
 

@@ -272,9 +272,13 @@ html[data-theme] .cp__themes-installed .it:hover, html[data-theme] .cp__themes-i
 .form-input:focus, .ui__input:focus { border-color: var(--ink-tint); box-shadow: 0 0 0 3px var(--ink-tint-soft); }
 
 /* table view: wrap the Name cell and let rows grow. Core caps the row wrapper, row and cell at 33px with overflow
-   hidden (table.css) and the list assumes 33px rows (views.cljs :fixed-item-height); it still lays rows out in flow,
-   so taller rows push the next ones down. Known quirk (TASKS T28): a jump from top to bottom of a long table can
-   land ~2 rows short until the list re-measures; one more scroll reaches the end. */
+   hidden (table.css). The list lays rows out in flow, so taller rows push the next ones down, but with
+   :fixed-item-height 33 (views.cljs) react-virtuoso never measures rows and writes the scroller height inline as
+   rows x 33px. Taller rows (wrapped titles, url cover images) then overflow into the table's own scroll box and under
+   the absolute "+ New" footer. Sizing the scroller and its viewport to their content fixes that; rows the list has
+   not rendered still count 33px each, which keeps its window maths consistent. */
+.ls-table .ls-table-rows [data-virtuoso-scroller] { height: auto !important; }
+.ls-table .ls-table-rows [data-viewport-type] { position: relative !important; height: auto !important; }
 .ls-table .ls-table-rows div[data-index], .ls-table .ls-table-rows div[data-item-index] { height: auto; min-height: 33px; max-height: none; }
 .ls-table .ls-table-row { height: auto; min-height: 33px; max-height: none; }
 .ls-table .ls-table-cell { max-height: none; }

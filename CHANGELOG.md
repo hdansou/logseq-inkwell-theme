@@ -25,7 +25,7 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 - Image assets without a saved size display at 640px (core default 250px), scaled down to fit narrow blocks; resized images keep their size.
 - Light-mode icon colours meet WCAG 3:1: green `#1f9a40` (Done, TIP icon) and orange `#c96a00` (High priority, WARNING icon), on the page and on their callout fills.
 - Pink block background and highlight colour now differ from red: rose `#f9d4e6` (light), plum `#57203f` (dark).
-- Table view: long titles in the Name column wrap and rows grow to fit (core caps every row at 33px and clips the rest). Known quirk: in long tables a jump straight to the bottom can land ~2 rows short until one more scroll.
+- Table view: long titles in the Name column wrap and rows grow to fit (core caps every row at 33px and clips the rest). The table grows with its rows, so tall rows, such as a `url` cover image, no longer spill under "+ New" or into a scroll box inside the table, and a jump straight to the bottom reaches the last row.
 - Tag chips stay beside the block title in hover previews, the right sidebar and nested blocks down to 360px of block width (core stacks them below 600px).
 - Light and dark screenshots in the README and the release zip.
 - Theme-Lab human test graph (`npm run lab [-- --variant <id>]`, `npm run lab:feedback`).

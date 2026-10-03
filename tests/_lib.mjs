@@ -97,7 +97,11 @@ export const CORE_HOVER_OVERRIDES = [
 export const RATING_COLOURS = { again: 'red', hard: 'orange', good: 'green', easy: 'blue' }
 
 // !important only where core itself uses it or sets the value via a utility class.
+// react-virtuoso writes the table list's heights inline (views.cljs :fixed-item-height)
+export const TABLE_LIST_INLINE_STYLED = ['.ls-table .ls-table-rows [data-virtuoso-scroller]', '.ls-table .ls-table-rows [data-viewport-type]']
+
 export const IMPORTANT_ALLOWED = [
+  ...TABLE_LIST_INLINE_STYLED,
   '.bullet-link-wrap:hover > .bullet-container:not(.typed-list) .bullet',
   '.block-children',
   '.cp__cmdk-search-input',
