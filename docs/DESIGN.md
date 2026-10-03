@@ -77,6 +77,8 @@ The tests enforce this list.
    - grey 04 and 05 are at least 1.25:1 against `--ink-float` (core uses them for hovered rows on popovers);
    - accent 01 and 02 sit on the far side of the page from the popover: lighter than `--ink-surface` in dark mode, darker in light mode (core uses them for ghost-button and list hovers);
    - `--ink-hover` is at least 1.3:1 against `--ink-float`;
+   - icon colours (`ICON_COLOURS`) meet 3:1 on the page and on their callout fill;
+   - `--ink-hl-pink` and `--ink-hl-red` differ in hue by at least 20°;
    - every text colour meets WCAG AA (4.5:1) on each surface it sits on (`TEXT_PAIRS` in `tests/_lib.mjs`). `--ink-label-3` is decorative and exempt.
 3. `npm run build`: this writes `themes/inkwell-<id>.css` and registers "Inkwell <Name> Light/Dark" in `package.json`.
 4. `npm test`, then `npm run lab -- --variant <id>` for a human pass.

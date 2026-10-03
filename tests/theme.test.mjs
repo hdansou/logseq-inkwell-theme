@@ -5,7 +5,7 @@ import path from 'node:path'
 import {
   ROOT, read, rules, declarations, ruleFor, isChannels, tokensUsed, contrast, luminance,
   MAPPING_SELECTOR, LIGHT_SELECTOR, DARK_SELECTOR,
-  SHUI_TOKENS, LX_VARS, LS_VARS, DEAD_SELECTORS, IMPORTANT_ALLOWED, CORE_HOVER_OVERRIDES, RATING_COLOURS, TEXT_PAIRS, over,
+  SHUI_TOKENS, LX_VARS, LS_VARS, DEAD_SELECTORS, IMPORTANT_ALLOWED, CORE_HOVER_OVERRIDES, RATING_COLOURS, TEXT_PAIRS, over, ICON_COLOURS, hue,
 } from './_lib.mjs'
 import { variants, buildVariant, themeEntries, themePath, checkMeta } from '../build.mjs'
 
@@ -145,6 +145,24 @@ for (const variant of VARIANTS) {
         assert.deepEqual(failures, [])
       })
     }
+
+    for (const [mode, palette] of [['light', light], ['dark', { ...light, ...dark }]]) {
+      test(`icon colours meet WCAG 3:1 on the page and on their callout fill in ${mode} mode`, () => {
+        const failures = ICON_COLOURS.flatMap((c) => ['surface', `${c}-soft`].map((bg) => [c, bg, contrast(palette[`--ink-${c}`], palette[`--ink-${bg}`])]))
+          .filter(([, , ratio]) => ratio < 3).map(([c, bg, ratio]) => `${c} on ${bg}: ${ratio.toFixed(2)}`)
+        assert.deepEqual(failures, [])
+      })
+
+      test(`pink and red highlights are distinct hues in ${mode} mode`, () => {
+        assert.ok(palette['--ink-hl-pink'], 'palette must define --ink-hl-pink')
+        const d = Math.abs(hue(palette['--ink-hl-pink']) - hue(palette['--ink-hl-red']))
+        assert.ok(Math.min(d, 360 - d) >= 20, `hue difference ${Math.min(d, 360 - d).toFixed(0)}° < 20°`)
+      })
+    }
+
+    test('the pink block background uses its own token', () => {
+      assert.equal(mapping['--ls-highlight-color-pink'], 'var(--ink-hl-pink)')
+    })
 
     describe('flashcard rating buttons', () => {
       const declOf = (id) => Object.assign({}, ...rules(css).filter((r) => r.selector.split(/,\s*/).includes(`#card-${id}`)).map((r) => declarations(r.body)))

@@ -140,4 +140,18 @@ export const TEXT_PAIRS = [
   ...['surface', 'sidebar', 'float'].map((b) => ['label-2', b]),  // secondary text, property keys, headers
   ['accent', 'surface'], ['accent', 'float'],  // today in the date picker, cloze
   ['on-tint', 'tint'],                          // primary buttons, Decision callout
+  ['label', 'hl-pink'],                         // pink block background
 ]
+
+// Icon colours need WCAG 3:1 (non-text) on the page and on their callout fill.
+// Red (CAUTION icon, 2.95:1 on its fill in light mode) is tracked as T29.
+export const ICON_COLOURS = ['green', 'orange']
+
+/** Hue in degrees (0-360) of a #rrggbb colour. */
+export const hue = (hex) => {
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+  const max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min
+  if (d === 0) return 0
+  const h = max === r ? ((g - b) / d) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4
+  return (h * 60 + 360) % 360
+}

@@ -17,12 +17,12 @@
   --ink-label: #1d1d1f; --ink-label-2: #6e6e73; --ink-label-3: #aeaeb2;
   --ink-tint: #223b3b; --ink-on-tint: #ffffff; --ink-tint-soft: #dfe8e8; --ink-accent: #9c2529;
   --ink-hover: #dcdee1; /* hovered/chosen row on floating surfaces (menus, selects, palette) */
-  --ink-green: #34c759; --ink-green-text: #1f7a35; --ink-green-soft: #e3f7e8;
-  --ink-orange: #ff9500; --ink-orange-text: #b03d00; --ink-orange-soft: #fff0db;
+  --ink-green: #1f9a40; --ink-green-text: #1f7a35; --ink-green-soft: #e3f7e8;
+  --ink-orange: #c96a00; --ink-orange-text: #b03d00; --ink-orange-soft: #fff0db;
   --ink-red: #ff3b30; --ink-red-text: #c4141f; --ink-red-soft: #ffe4e2;
   --ink-blue: #007aff; --ink-blue-text: #0055d4; --ink-blue-soft: #dbecff;
   --ink-purple: #af52de; --ink-purple-text: #8330b0; --ink-purple-soft: #f4e7fa;
-  --ink-hl-yellow: #fff1a8; --ink-hl-green: #d4f5dc; --ink-hl-blue: #d6e8ff; --ink-hl-purple: #efdefa; --ink-hl-red: #ffdcd9; --ink-hl-gray: #e8e8ed;
+  --ink-hl-yellow: #fff1a8; --ink-hl-green: #d4f5dc; --ink-hl-blue: #d6e8ff; --ink-hl-purple: #efdefa; --ink-hl-red: #ffdcd9; --ink-hl-pink: #f9d4e6; --ink-hl-gray: #e8e8ed;
   --ink-shadow-float: 0 0 0 0.5px rgba(0,0,0,.12), 0 12px 40px rgba(0,0,0,.18);
   --ink-scrim: rgba(0,0,0,.28);
   /* shui tokens are consumed as hsl(var(--x)) — they MUST be bare "H S% L%" channels */
@@ -48,7 +48,7 @@ html[data-theme="dark"] {
   --ink-red: #ff453a; --ink-red-text: #ff7a70; --ink-red-soft: #4e2524;
   --ink-blue: #0a84ff; --ink-blue-text: #5aaeff; --ink-blue-soft: #183350;
   --ink-purple: #bf5af2; --ink-purple-text: #d68cff; --ink-purple-soft: #402a4d;
-  --ink-hl-yellow: #5a4a0c; --ink-hl-green: #1d4a2a; --ink-hl-blue: #173a5e; --ink-hl-purple: #46285a; --ink-hl-red: #5a2422; --ink-hl-gray: #3a3a3c;
+  --ink-hl-yellow: #5a4a0c; --ink-hl-green: #1d4a2a; --ink-hl-blue: #173a5e; --ink-hl-purple: #46285a; --ink-hl-red: #5a2422; --ink-hl-pink: #57203f; --ink-hl-gray: #3a3a3c;
   --ink-shadow-float: 0 0 0 0.5px rgba(255,255,255,.12), 0 12px 40px rgba(0,0,0,.6);
   --ink-scrim: rgba(0,0,0,.55);
   --ink-c-surface: 240 3% 11%; --ink-c-float: 240 2% 18%; --ink-c-muted: 240 3% 14%;
@@ -137,7 +137,7 @@ html[data-theme][data-color], html[data-theme][data-color] body {
   --ls-highlight-color-blue: var(--ink-hl-blue);
   --ls-highlight-color-purple: var(--ink-hl-purple);
   --ls-highlight-color-red: var(--ink-hl-red);
-  --ls-highlight-color-pink: var(--ink-hl-red);
+  --ls-highlight-color-pink: var(--ink-hl-pink);
   --ls-highlight-color-gray: var(--ink-hl-gray);
 }
 /* core defines this on main.theme-container-inner, so it must be overridden there */

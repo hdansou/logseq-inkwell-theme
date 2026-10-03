@@ -73,7 +73,7 @@ html[data-theme][data-color], html[data-theme][data-color] body {
   --ls-highlight-color-blue: var(--ink-hl-blue);
   --ls-highlight-color-purple: var(--ink-hl-purple);
   --ls-highlight-color-red: var(--ink-hl-red);
-  --ls-highlight-color-pink: var(--ink-hl-red);
+  --ls-highlight-color-pink: var(--ink-hl-pink);
   --ls-highlight-color-gray: var(--ink-hl-gray);
 }
 /* core defines this on main.theme-container-inner, so it must be overridden there */

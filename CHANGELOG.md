@@ -21,6 +21,8 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 - Menus with a non-default accent colour: hovered items in the plugins toolbar menu, the header "…" menu and the themes dialog were painted with a grey equal to the popover in dark mode; they now use `--ink-hover`.
 - Grey and accent scales re-spaced so Logseq's own hover fills show: dark `--lx-gray-04/05` are now clearly lighter than popovers (04 was identical to them) and dark `--lx-accent-01/02` lighter than the page (they were darker, so ghost-button hovers darkened). Dark borders that use grey 06/07 are slightly brighter. Tests enforce the scale rules.
 - Flashcard rating buttons: Again red, Hard orange, Good green, Easy blue (palette soft fill + text, AA in both modes). They were grey because the outline-button rule hid core's per-rating colours.
+- Light-mode icon colours meet WCAG 3:1: green `#1f9a40` (Done, TIP icon) and orange `#c96a00` (High priority, WARNING icon), on the page and on their callout fills.
+- Pink block background and highlight colour now differ from red: rose `#f9d4e6` (light), plum `#57203f` (dark).
 - Table view: long titles in the Name column wrap and rows grow to fit (core caps every row at 33px and clips the rest). Known quirk: in long tables a jump straight to the bottom can land ~2 rows short until one more scroll.
 - Tag chips stay beside the block title in hover previews, the right sidebar and nested blocks down to 360px of block width (core stacks them below 600px).
 - Light and dark screenshots in the README and the release zip.
