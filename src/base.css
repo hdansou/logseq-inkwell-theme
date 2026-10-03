@@ -216,7 +216,12 @@ html[data-theme] .cp__themes-installed .it:hover, html[data-theme] .cp__themes-i
 .ls-table .ls-table-rows [data-virtuoso-scroller] { height: auto !important; }
 .ls-table .ls-table-rows [data-viewport-type] { position: relative !important; height: auto !important; }
 .ls-table .ls-table-rows div[data-index], .ls-table .ls-table-rows div[data-item-index] { height: auto; min-height: 33px; max-height: none; }
-.ls-table .ls-table-row { height: auto; min-height: 33px; max-height: none; }
+/* row separators: core draws a 1px border-bottom. Grown rows have fractional heights (wrapped text, images), and under
+   app zoom the border can snap to nothing or under the next row's opaque background, so a separator goes missing.
+   An inset shadow inside the row always paints; the transparent border keeps a pixel between it and the next row. */
+.ls-table .ls-table-row { height: auto; min-height: 33px; max-height: none; border-bottom-color: transparent; box-shadow: inset 0 -1px 0 hsl(var(--border)); }
+/* pinned columns sit on an opaque background (core .sticky-columns) that would hide the row's shadow */
+.ls-table .ls-table-row .sticky-columns { box-shadow: inset 0 -1px 0 hsl(var(--border)); }
 .ls-table .ls-table-cell { max-height: none; }
 .ls-table .ls-table-row .table-block-title div { white-space: normal; }
 .ls-table-cell .table-block-title > .flex-row { min-width: 0; }

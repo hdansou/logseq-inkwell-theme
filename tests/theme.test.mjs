@@ -76,6 +76,14 @@ describe('src/base.css', () => {
     assert.ok(!tableRules.some((r) => r.body.includes('!important')), 'table overrides must win on specificity, not !important')
   })
 
+  test('table row separators are an inset shadow, not a border (a 1px border on a fractional-height row vanishes under zoom)', () => {
+    const row = rules(base).find((r) => r.selector === '.ls-table .ls-table-row')?.body ?? ''
+    assert.match(row, /border-bottom-color:\s*transparent/)
+    assert.match(row, /box-shadow:\s*inset 0 -1px 0 hsl\(var\(--border\)\)/)
+    const pinned = rules(base).find((r) => r.selector === '.ls-table .ls-table-row .sticky-columns')?.body ?? ''
+    assert.match(pinned, /box-shadow:\s*inset 0 -1px 0 hsl\(var\(--border\)\)/, 'pinned columns paint an opaque background over the row shadow')
+  })
+
   test('the table list grows with its rows (core fixes it at rows x 33px, so taller rows overflow under "+ New")', () => {
     const body = (sel) => rules(base).find((r) => r.selector === sel)?.body ?? ''
     assert.match(body(TABLE_LIST_INLINE_STYLED[0]), /height:\s*auto\s*!important/)
