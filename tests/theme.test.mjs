@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { existsSync } from 'node:fs'
 import path from 'node:path'
 import {
-  ROOT, read, rules, declarations, ruleFor, isChannels, tokensUsed, contrast,
+  ROOT, read, rules, declarations, ruleFor, isChannels, tokensUsed, contrast, luminance,
   MAPPING_SELECTOR, LIGHT_SELECTOR, DARK_SELECTOR,
   SHUI_TOKENS, LX_VARS, LS_VARS, DEAD_SELECTORS, IMPORTANT_ALLOWED, CORE_HOVER_OVERRIDES,
 } from './_lib.mjs'
@@ -79,6 +79,35 @@ for (const variant of VARIANTS) {
         assert.ok(palette['--ink-hover'], 'palette must define --ink-hover')
         const ratio = contrast(palette['--ink-hover'], palette['--ink-float'])
         assert.ok(ratio >= 1.3, `--ink-hover vs --ink-float contrast ${ratio.toFixed(2)} < 1.3`)
+      })
+    }
+
+    for (const [mode, palette] of [['light', light], ['dark', { ...light, ...dark }]]) {
+      const step = (p, n) => palette[`--ink-${p}${String(n).padStart(2, '0')}`]
+
+      test(`grey scale steps 03-12 run steadily from page to text in ${mode} mode`, () => {
+        const lum = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => luminance(step('g', n)))
+        const ok = lum.every((v, i) => i === 0 || (mode === 'dark' ? v > lum[i - 1] : v < lum[i - 1]))
+        assert.ok(ok, `--ink-g03..12 not monotonic in ${mode}: ${lum.map((v) => v.toFixed(3))}`)
+      })
+
+      test(`hover steps --lx-gray-04/05 stand out on the popover in ${mode} mode`, () => {
+        // core paints hovered/focused rows on popovers with --lx-gray-04 (shui.css) and --lx-gray-05 (common.css)
+        for (const n of [4, 5]) {
+          const ratio = contrast(step('g', n), palette['--ink-float'])
+          assert.ok(ratio >= 1.25, `--ink-g0${n} vs --ink-float ${ratio.toFixed(2)} < 1.25`)
+        }
+      })
+
+      test(`accent tints 01-02 move away from the page, not into it, in ${mode} mode`, () => {
+        // core uses bg-accent-01/02 as hover fills (ghost buttons, themes dialog): in dark mode they must be lighter
+        // than the page, in light mode darker, and visible against it
+        for (const n of [1, 2]) {
+          const a = step('a', n)
+          const away = mode === 'dark' ? luminance(a) > luminance(palette['--ink-surface']) : luminance(a) < luminance(palette['--ink-surface'])
+          assert.ok(away, `--ink-a0${n} (${a}) is on the wrong side of --ink-surface in ${mode}`)
+          assert.ok(contrast(a, palette['--ink-surface']) >= 1.08, `--ink-a0${n} too close to the page`)
+        }
       })
     }
 

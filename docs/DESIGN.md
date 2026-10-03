@@ -53,6 +53,11 @@ The tests enforce this list.
 
 1. Copy `src/palettes/slate.css` to `src/palettes/<id>.css` and set its `@variant` name and `@description`.
 2. Change the values. Keep every token name: `src/base.css` uses them all, and the tests check each palette defines every token in light and dark. The `--ink-c-*` tokens are the same colours written as HSL channels (`H S% L%`) for the shui layer. The `--ink-g01…12` and `--ink-a01…12` steps are the grey and accent scales.
+   The scales have rules the tests enforce, because Logseq paints its own hover and active states with them:
+   - grey 03→12 runs steadily from the page colour towards the text colour;
+   - grey 04 and 05 are at least 1.25:1 against `--ink-float` (core uses them for hovered rows on popovers);
+   - accent 01 and 02 sit on the far side of the page from the popover: lighter than `--ink-surface` in dark mode, darker in light mode (core uses them for ghost-button and list hovers);
+   - `--ink-hover` is at least 1.3:1 against `--ink-float`.
 3. `npm run build`: this writes `themes/inkwell-<id>.css` and registers "Inkwell <Name> Light/Dark" in `package.json`.
 4. `npm test`, then `npm run lab -- --variant <id>` for a human pass.
 

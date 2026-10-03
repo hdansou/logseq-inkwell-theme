@@ -32,9 +32,9 @@
   --ink-c-tint: 180 27% 18%; --ink-c-on-tint: 0 0% 100%; --ink-c-tint-soft: 180 16% 89%;
   --ink-c-red: 3 100% 59%;
   /* 12-step scales: core CSS reads --lx-gray-NN / --lx-accent-NN BEFORE any --ls-* fallback */
-  --ink-g01: #ffffff; --ink-g02: #f5f5f7; --ink-g03: #f0f0f3; --ink-g04: #e8e8ed; --ink-g05: #e0e0e5; --ink-g06: #d2d2d7;
+  --ink-g01: #ffffff; --ink-g02: #f5f5f7; --ink-g03: #f0f0f3; --ink-g04: #e3e3e8; --ink-g05: #dcdce1; --ink-g06: #d2d2d7;
   --ink-g07: #c7c7cc; --ink-g08: #aeaeb2; --ink-g09: #8e8e93; --ink-g10: #7c7c80; --ink-g11: #6e6e73; --ink-g12: #1d1d1f;
-  --ink-a01: #f7fafa; --ink-a02: #eef4f4; --ink-a03: #dfe8e8; --ink-a04: #cfdddd; --ink-a05: #bdd0d0; --ink-a06: #a6bfbf;
+  --ink-a01: #f1f6f6; --ink-a02: #e8f0f0; --ink-a03: #dfe8e8; --ink-a04: #cfdddd; --ink-a05: #bdd0d0; --ink-a06: #a6bfbf;
   --ink-a07: #87a6a6; --ink-a08: #5f8585; --ink-a09: #223b3b; --ink-a10: #2c4a4a; --ink-a11: #223b3b; --ink-a12: #111e1e;
 }
 html[data-theme="dark"] {
@@ -56,10 +56,10 @@ html[data-theme="dark"] {
   --ink-c-line: 240 2% 22%; --ink-c-line-soft: 240 2% 18%;
   --ink-c-tint: 180 14% 74%; --ink-c-on-tint: 0 0% 0%; --ink-c-tint-soft: 180 20% 16%;
   --ink-c-red: 3 100% 61%;
-  --ink-g01: #1c1c1e; --ink-g02: #161618; --ink-g03: #232325; --ink-g04: #2c2c2e; --ink-g05: #333336; --ink-g06: #38383a;
-  --ink-g07: #48484a; --ink-g08: #636366; --ink-g09: #7c7c80; --ink-g10: #8e8e93; --ink-g11: #98989d; --ink-g12: #f5f5f7;
-  --ink-a01: #111a1a; --ink-a02: #172222; --ink-a03: #213232; --ink-a04: #2a3e3e; --ink-a05: #344b4b; --ink-a06: #405959;
-  --ink-a07: #506c6c; --ink-a08: #678686; --ink-a09: #b3c6c6; --ink-a10: #c3d3d3; --ink-a11: #b3c6c6; --ink-a12: #e3eded;
+  --ink-g01: #1c1c1e; --ink-g02: #161618; --ink-g03: #232325; --ink-g04: #3f3f42; --ink-g05: #47474a; --ink-g06: #4f4f52;
+  --ink-g07: #5a5a5d; --ink-g08: #636366; --ink-g09: #7c7c80; --ink-g10: #8e8e93; --ink-g11: #98989d; --ink-g12: #f5f5f7;
+  --ink-a01: #252e2e; --ink-a02: #2b3636; --ink-a03: #313e3e; --ink-a04: #384848; --ink-a05: #415353; --ink-a06: #4b6060;
+  --ink-a07: #587070; --ink-a08: #678686; --ink-a09: #b3c6c6; --ink-a10: #c3d3d3; --ink-a11: #b3c6c6; --ink-a12: #e3eded;
 }
 
 /* Inkwell — shared rules for every variant. No colours here: everything comes from the
