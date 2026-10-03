@@ -53,6 +53,7 @@ Punch list agreed with the owner; applied in the recommended order.
 - [x] T25 (shipped 2026-10-03, owner approved after a Chrome preview) Light-mode icon colours: green #34c759 → #1f9a40 (page 3.65, TIP fill 3.26), orange #ff9500 → #c96a00 (page 3.79, WARNING fill 3.38). Test: icons ≥ 3:1 on page and callout fill, both modes
 - [x] T29 (shipped 2026-10-03, owner approved) Light-mode red CAUTION icon #ff3b30 was 2.95:1 on its fill (page 3.55); now #f2352a (page 3.95, fill 3.28). 'red' added to ICON_COLOURS
 - [x] B2 Distinct pink highlight: done as T19
+- [x] Pass 2 (2026-10-03): C1 README compatibility line current; C2 README coverage lists media, tag chips, menu highlights, tables, flashcards; C4 theme header verified date 2026-10-03; C5 TESTING style id `ink-test`; C6 TESTING: own web graph instead of Demo, second desktop instance + zoom check; C3 screenshots re-taken after T25/T29 (app.logseq.com 2.0.1, InkWell-Lab "Weekly Review", 1440×757; the T26/T27 long test task moved to Long Table Test first). Nothing in A/B/D; E = M4 (owner)
 - [ ] M4 GitHub home: `repository` in package.json, real `repo` in the manifest, push (owner)
 
 ## Security audit (2026-10-01)
