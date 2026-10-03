@@ -41,6 +41,16 @@ test('there is at least one variant, and slate is one of them', () => {
 })
 
 describe('src/base.css', () => {
+  test('default-sized videos (inline width 560px) fill the block; resized ones keep their width', () => {
+    const find = (sel) => rules(base).find((x) => x.selector === sel)
+    const shell = find('.ls-block .video-embed-shell:has(> .video-embed-frame[style*="width: 560px"])')
+    assert.ok(shell, 'embed shell rule missing: core makes it inline-flex, so 100% collapses to the iframe default')
+    assert.match(shell.body, /display:\s*flex/)
+    assert.match(shell.body, /width:\s*100%/)
+    assert.match(find('.ls-block .video-embed-frame[style*="width: 560px"]')?.body ?? '', /width:\s*100%\s*!important/)
+    assert.match(find('.ls-block video.asset-video[style*="width: 560px"]')?.body ?? '', /width:\s*100%\s*!important;\s*height:\s*auto\s*!important/)
+  })
+
   test('default-sized image assets display at 640px, scaled to fit, aspect kept (core default 250)', () => {
     const r = rules(base).find((x) => x.selector === '.ls-block .asset-container > img[width="250"]')
     assert.ok(r, 'no rule for default-sized images')

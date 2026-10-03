@@ -21,6 +21,7 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 - Menus with a non-default accent colour: hovered items in the plugins toolbar menu, the header "…" menu and the themes dialog were painted with a grey equal to the popover in dark mode; they now use `--ink-hover`.
 - Grey and accent scales re-spaced so Logseq's own hover fills show: dark `--lx-gray-04/05` are now clearly lighter than popovers (04 was identical to them) and dark `--lx-accent-01/02` lighter than the page (they were darker, so ghost-button hovers darkened). Dark borders that use grey 06/07 are slightly brighter. Tests enforce the scale rules.
 - Flashcard rating buttons: Again red, Hard orange, Good green, Easy blue (palette soft fill + text, AA in both modes). They were grey because the outline-button rule hid core's per-rating colours.
+- Videos at their default size fill the block width: embeds (`{{video}}`, YouTube) at 16:9 and uploaded videos at their own aspect ratio. Resized videos (`w=…` in the macro, or a dragged size) keep their width.
 - Image assets without a saved size display at 640px (core default 250px), scaled down to fit narrow blocks; resized images keep their size.
 - Light-mode icon colours meet WCAG 3:1: green `#1f9a40` (Done, TIP icon) and orange `#c96a00` (High priority, WARNING icon), on the page and on their callout fills.
 - Pink block background and highlight colour now differ from red: rose `#f9d4e6` (light), plum `#57203f` (dark).

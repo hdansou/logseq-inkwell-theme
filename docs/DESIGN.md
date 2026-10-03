@@ -49,6 +49,12 @@ Core caps every table row, row wrapper and cell at 33px with overflow hidden, an
 
 Core shows an image that has no saved size at 250px. Inkwell shows those at 640px, never wider than the block, keeping the aspect ratio. Images resized by dragging keep their own width. Known: the loading placeholder is still 250px, so a default image grows to 640px once loaded; an image deliberately resized to exactly 250px also shows at 640px.
 
+## Videos
+
+Core gives embeds (`.video-embed-frame`) and uploaded videos (`video.asset-video`) an inline width, 560px by default. Inkwell makes default-sized ones fill the block: embeds keep core's inline 16:9 aspect ratio, uploaded videos their own. The embed's wrapper (`.video-embed-shell`) is `inline-flex` in core, so it is stretched too, otherwise 100% collapses to the iframe's 300px default. Resizing writes `w=…` into the macro, and that width is kept. Inline styles need `!important` (listed in the tests' allowlist).
+
+Note: app.logseq.com currently serves older embed markup (`iframe.aspect-video`, before core #12782), so test video changes in the desktop app.
+
 ## Flashcard ratings
 
 | Button (`id`) | Colour | Fill / text tokens |
@@ -69,6 +75,7 @@ Only where core itself uses it, or sets the value through a Tailwind class:
 - the command palette input size
 - `.CodeMirror` / `pre` backgrounds
 - the CodeMirror gutter
+- default-sized videos (core sets their width inline)
 
 The tests enforce this list.
 

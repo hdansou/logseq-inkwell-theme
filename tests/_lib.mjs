@@ -103,6 +103,9 @@ export const IMPORTANT_ALLOWED = [
   '.cp__cmdk-search-input',
   '.CodeMirror, pre',
   '.CodeMirror-gutters',
+  // core sizes videos with an inline width (block.cljs video-embed-cp, asset-video-style)
+  '.ls-block .video-embed-frame[style*="width: 560px"]',
+  '.ls-block video.asset-video[style*="width: 560px"]',
 ]
 
 export const isChannels = (v) => /^\d+(\.\d+)? \d+(\.\d+)?% \d+(\.\d+)?%$/.test(v)

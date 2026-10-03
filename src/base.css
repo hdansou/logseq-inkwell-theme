@@ -221,6 +221,12 @@ html[data-theme] .cp__themes-installed .it:hover, html[data-theme] .cp__themes-i
    at 640px, never wider than the block, aspect kept. Images resized by drag carry their own width and are untouched. */
 .ls-block .asset-container > img[width="250"] { width: 640px; max-width: 100%; height: auto; }
 
+/* videos: core sizes embeds (.video-embed-frame) and uploaded videos (video.asset-video) with an inline width, 560px by
+   default. Default-sized ones fill the block; resized ones keep their width. Inline styles need !important. */
+.ls-block .video-embed-shell:has(> .video-embed-frame[style*="width: 560px"]) { display: flex; width: 100%; } /* core: inline-flex, sized to content */
+.ls-block .video-embed-frame[style*="width: 560px"] { width: 100% !important; flex: 1 1 auto; }
+.ls-block video.asset-video[style*="width: 560px"] { width: 100% !important; height: auto !important; }
+
 /* ---------- code ---------- */
 :not(pre) > code { background: var(--ink-fill); border-radius: 4px; padding: 1px 5px; font-size: 13px; }
 .CodeMirror, pre { background: var(--ink-fill) !important; border-radius: 8px; } /* CodeMirror 5 themes set their own background */
