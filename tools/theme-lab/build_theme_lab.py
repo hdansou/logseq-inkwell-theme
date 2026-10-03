@@ -329,7 +329,7 @@ feedback = page("Theme Lab — Feedback", [
       check("Dialogs and settings", "Settings window, confirmation dialogs, scrim"),
       check("Right sidebar", "Shift-click a link to open it in the sidebar"),
       check("Graph view", "Node and label colours against the background"),
-      check("Flashcards review", "Card dialog and buttons"),
+      check("Flashcards review", "Card dialog; rating buttons Again red, Hard orange, Good green, Easy blue; Show answer neutral"),
       check("Buttons and inputs", "Primary and secondary buttons, text inputs, focus ring")),
     b("Modes",
       check("Dark mode", "Repeat a quick pass over every page"),

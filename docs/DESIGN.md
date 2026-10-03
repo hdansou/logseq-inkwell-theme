@@ -37,6 +37,17 @@ The palette itself sits on `:root` (light) and `html[data-theme="dark"]` (dark).
 
 The left sidebar's background is `--left-sidebar-bg-color`, which core defines on `main.theme-container-inner`, so it is overridden there.
 
+## Flashcard ratings
+
+| Button (`id`) | Colour | Fill / text tokens |
+|---|---|---|
+| Again (`#card-again`) | red | `--ink-red-soft` / `--ink-red-text` |
+| Hard (`#card-hard`) | orange | `--ink-orange-soft` / `--ink-orange-text` |
+| Good (`#card-good`) | green | `--ink-green-soft` / `--ink-green-text` |
+| Easy (`#card-easy`) | blue | `--ink-blue-soft` / `--ink-blue-text` |
+
+Anki convention. "Show answer" (`#card-answers`) stays neutral. Each text/fill pair must meet WCAG AA (4.5:1) in both modes; the tests check every palette.
+
 ## Where !important is used
 
 Only where core itself uses it, or sets the value through a Tailwind class:
