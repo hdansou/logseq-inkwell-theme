@@ -41,6 +41,14 @@ test('there is at least one variant, and slate is one of them', () => {
 })
 
 describe('src/base.css', () => {
+  test('block rows keep title and tag chips side by side down to 360px (core stacks below 600px)', () => {
+    const row = rules(base).find((r) => r.selector === '.ls-block .block-row' && /flex-direction:\s*row/.test(r.body))
+    assert.ok(row, 'no .ls-block .block-row { flex-direction: row } rule')
+    const m = /@container \(max-width:\s*(\d+)px\)\s*\{\s*\.ls-block \.block-row\s*\{[^}]*flex-direction:\s*column/.exec(base)
+    assert.ok(m, 'no narrow @container rule stacking .ls-block .block-row')
+    assert.ok(Number(m[1]) <= 400, `stacks at ${m[1]}px; expected <= 400px`)
+  })
+
   test('holds no palette: no colour literals outside the variable mapping', () => {
     const coloured = rules(base)
       .filter((r) => r.selector !== MAPPING_SELECTOR)

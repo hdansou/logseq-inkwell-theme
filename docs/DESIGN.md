@@ -37,6 +37,10 @@ The palette itself sits on `:root` (light) and `html[data-theme="dark"]` (dark).
 
 The left sidebar's background is `--left-sidebar-bg-color`, which core defines on `main.theme-container-inner`, so it is overridden there.
 
+## Block layout
+
+Core stacks a block's title above its tag chips whenever the block is narrower than 600px (`@container` in core `block.css`), which hits hover previews, the right sidebar and nested blocks. Inkwell keeps them side by side down to 360px and stacks below that.
+
 ## Flashcard ratings
 
 | Button (`id`) | Colour | Fill / text tokens |

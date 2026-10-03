@@ -105,6 +105,10 @@ body, #app-container, #main-content-container { background: var(--ink-surface); 
 .block-children-left-border:hover { background-color: var(--ink-label-3); }
 .block-control .rotating-arrow { color: var(--ink-label-3); }
 .ls-block.selected, .block-highlight { border-radius: 7px; }
+/* core stacks the block row (title above tag chips) whenever a block is under 600px wide (block.css @container),
+   which hits hover previews, the right sidebar and nested blocks. Keep the row down to 360px. */
+.ls-block .block-row { flex-direction: row; gap: 0.25rem; }
+@container (max-width: 360px) { .ls-block .block-row { flex-direction: column; gap: 0; } }
 
 /* ---------- links, tags, references ---------- */
 a.page-ref { color: var(--ink-label); font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--ink-label-3); border-radius: 2px; }
