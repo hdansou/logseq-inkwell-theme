@@ -4,6 +4,11 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 
 ## [Unreleased]
 
+### Added
+
+- Code font: Cascadia Code with ligatures, in code blocks and inline code. An installed "Cascadia Code NF" is used first; otherwise the web font, with Symbols Nerd Font Mono for the Nerd Font icons.
+- Default fonts: text in Atkinson Hyperlegible Next, with tabler-icons and Symbols Nerd Font Mono for icons typed as text. The fonts load by URL from jsDelivr (pinned versions), so they also work when the file is pasted as `custom.css`, including on iOS. Offline, text falls back to the system font.
+
 ### Changed
 
 - The plugin is listed as **Inkwell theme** (was "Inkwell"); the theme names stay Inkwell Slate Light / Dark.

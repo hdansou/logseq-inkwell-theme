@@ -1,11 +1,35 @@
 /* Inkwell — shared rules for every variant. No colours here: everything comes from the
    --ink-* tokens of the palette in src/palettes/. Edit this file, then run `npm run build`. */
 
+/* ---------- fonts ----------
+   Loaded by URL, not from plugin files: the same stylesheet then works as custom.css and on iOS,
+   where plugins don't load. Offline, text falls back to the system font. A browser only downloads
+   a face when the page shows a character in its unicode-range.
+   Text: Atkinson Hyperlegible Next (variable, 200-800). */
+@font-face { font-family: "Atkinson Hyperlegible Next"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/atkinson-hyperlegible-next@5.3.0/files/atkinson-hyperlegible-next-latin-wght-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Atkinson Hyperlegible Next"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/atkinson-hyperlegible-next@5.3.0/files/atkinson-hyperlegible-next-latin-ext-wght-normal.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Atkinson Hyperlegible Next"; font-style: italic; font-weight: 200 800; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/atkinson-hyperlegible-next@5.3.0/files/atkinson-hyperlegible-next-latin-wght-italic.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Atkinson Hyperlegible Next"; font-style: italic; font-weight: 200 800; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/atkinson-hyperlegible-next@5.3.0/files/atkinson-hyperlegible-next-latin-ext-wght-italic.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+/* Code: Cascadia Code (variable, 200-700, with ligatures). The Nerd Font build ("Cascadia Code NF") is
+   not published as a web font, so an installed copy is used first; otherwise Cascadia Code plus
+   Symbols Nerd Font Mono gives the same glyphs. */
+@font-face { font-family: "Cascadia Code"; font-style: normal; font-weight: 200 700; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/cascadia-code@5.3.0/files/cascadia-code-symbols2-wght-normal.woff2") format("woff2"); unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F; }
+@font-face { font-family: "Cascadia Code"; font-style: normal; font-weight: 200 700; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/cascadia-code@5.3.0/files/cascadia-code-latin-ext-wght-normal.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Cascadia Code"; font-style: normal; font-weight: 200 700; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/cascadia-code@5.3.0/files/cascadia-code-latin-wght-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Cascadia Code"; font-style: italic; font-weight: 200 700; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/cascadia-code@5.3.0/files/cascadia-code-symbols2-wght-italic.woff2") format("woff2"); unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F; }
+@font-face { font-family: "Cascadia Code"; font-style: italic; font-weight: 200 700; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/cascadia-code@5.3.0/files/cascadia-code-latin-ext-wght-italic.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Cascadia Code"; font-style: italic; font-weight: 200 700; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/cascadia-code@5.3.0/files/cascadia-code-latin-wght-italic.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* Icons typed as text. Core ships tabler-icons 2.47.0 as "tabler-icons"; the PUA face is the same
+   font for where core's is missing. Both icon faces cover only the private use areas, so they never
+   replace letters or digits. Tabler comes first: where the two fonts share a code point, tabler wins. */
+@font-face { font-family: "Tabler Icons PUA"; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/fonts/tabler-icons.woff2") format("woff2"); unicode-range: U+E000-F8FF; }
+@font-face { font-family: "Symbols Nerd Font Mono"; font-display: swap; src: local("Symbols Nerd Font Mono"), url("https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@v3.4.0/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf") format("truetype"); unicode-range: U+E000-F8FF, U+F0000-FFFFD; }
+
 /* ---------- map onto Logseq's variables ----------
    Core sets these on html[data-theme=…][data-color=…] (specificity 0,2,1) and, for non-default
    accent colours, on body/.light-theme/.dark-theme. This selector beats both. */
 html[data-theme][data-color], html[data-theme][data-color] body {
-  --ls-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", system-ui;
+  --ls-font-family: "Atkinson Hyperlegible Next", "tabler-icons", "Tabler Icons PUA", "Symbols Nerd Font Mono", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", system-ui;
   --ls-page-title-size: 32px;
 
   /* shui / Tailwind tokens (channels only) */
@@ -244,6 +268,8 @@ html[data-theme] .cp__themes-installed .it:hover, html[data-theme] .cp__themes-i
 .ls-block video.asset-video[style*="width: 560px"] { width: 100% !important; height: auto !important; }
 
 /* ---------- code ---------- */
+/* letter-spacing 0: any other value (body has -0.01em) makes Chromium drop ligatures */
+.CodeMirror, pre, code, :not(pre) > code { letter-spacing: 0; font-family: "Cascadia Code NF", "Cascadia Code", "Symbols Nerd Font Mono", ui-monospace, Menlo, Consolas, monospace; font-variant-ligatures: contextual; }
 :not(pre) > code { background: var(--ink-fill); border-radius: 4px; padding: 1px 5px; font-size: 13px; }
 .CodeMirror, pre { background: var(--ink-fill) !important; border-radius: 8px; } /* CodeMirror 5 themes set their own background */
 .CodeMirror-gutters { background: transparent !important; border-right: 1px solid var(--ink-line-soft) !important; }

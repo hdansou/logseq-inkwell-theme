@@ -109,6 +109,57 @@ describe('src/base.css', () => {
     assert.ok(Number(m[1]) <= 400, `stacks at ${m[1]}px; expected <= 400px`)
   })
 
+  describe('fonts', () => {
+    const faces = rules(base).filter((r) => r.selector === '@font-face')
+    const family = (r) => /font-family:\s*"([^"]+)"/.exec(r.body)?.[1]
+    const stack = /--ls-font-family:\s*([^;]+);/.exec(ruleFor(base, MAPPING_SELECTOR)?.body ?? '')?.[1] ?? ''
+
+    test('text is Atkinson Hyperlegible Next, then the icon fonts, then system fonts', () => {
+      const names = stack.split(',').map((s) => s.trim().replace(/"/g, ''))
+      assert.deepEqual(names.slice(0, 4), ['Atkinson Hyperlegible Next', 'tabler-icons', 'Tabler Icons PUA', 'Symbols Nerd Font Mono'])
+      assert.ok(names.includes('-apple-system') && names.includes('system-ui'), 'no system fallback for offline use')
+    })
+
+    const codeStack = /font-family:\s*([^;]+);/.exec(ruleFor(base, '.CodeMirror, pre, code, :not(pre) > code')?.body ?? '')?.[1] ?? ''
+
+    test('code is Cascadia Code: an installed NF build first, else the web font plus the Nerd Font symbols', () => {
+      const names = codeStack.split(',').map((s) => s.trim().replace(/"/g, ''))
+      assert.deepEqual(names.slice(0, 3), ['Cascadia Code NF', 'Cascadia Code', 'Symbols Nerd Font Mono'])
+      assert.equal(names.at(-1), 'monospace')
+    })
+
+    test('code has ligatures: letter-spacing 0 (the body value is inherited, and any spacing turns ligatures off)', () => {
+      const body = ruleFor(base, '.CodeMirror, pre, code, :not(pre) > code')?.body ?? ''
+      assert.match(body, /letter-spacing:\s*0;/)
+      assert.match(body, /font-variant-ligatures:\s*contextual/)
+    })
+
+    test('every declared face is in a stack', () => {
+      assert.ok(faces.length > 0, 'no @font-face rules')
+      assert.deepEqual([...new Set(faces.map(family))].filter((f) => !(stack + codeStack).includes(`"${f}"`)), [])
+    })
+
+    test('faces load by URL from jsDelivr at a pinned version, and swap in (custom.css and iOS have no plugin files)', () => {
+      for (const r of faces) {
+        const urls = [...r.body.matchAll(/url\("([^"]+)"\)/g)].map((m) => m[1])
+        assert.ok(urls.length > 0, `${family(r)}: no url()`)
+        for (const u of urls) assert.match(u, /^https:\/\/cdn\.jsdelivr\.net\/(npm|gh)\/[^@]*(@[\w-]+\/)?[^@]*@v?\d+\.\d+\.\d+\//, `${u} is not pinned`)
+        assert.match(r.body, /font-display:\s*swap/, `${family(r)}: no font-display: swap`)
+      }
+      assert.ok(!/@import/.test(base), '@import only works at the top of a stylesheet; use @font-face')
+    })
+
+    test('icon faces only cover the private use areas (tabler also maps a-z and 0-9)', () => {
+      const icons = faces.filter((r) => !['Atkinson Hyperlegible Next', 'Cascadia Code'].includes(family(r)))
+      assert.deepEqual(icons.map(family).sort(), ['Symbols Nerd Font Mono', 'Tabler Icons PUA'])
+      for (const r of icons) {
+        const ranges = /unicode-range:\s*([^;]+);/.exec(r.body)?.[1].split(',').map((s) => s.trim()) ?? []
+        assert.ok(ranges.length > 0, `${family(r)}: no unicode-range`)
+        assert.deepEqual(ranges.filter((x) => !['U+E000-F8FF', 'U+F0000-FFFFD'].includes(x)), [])
+      }
+    })
+  })
+
   test('holds no palette: no colour literals outside the variable mapping', () => {
     const coloured = rules(base)
       .filter((r) => r.selector !== MAPPING_SELECTOR)

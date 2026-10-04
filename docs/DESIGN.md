@@ -37,6 +37,25 @@ The palette itself sits on `:root` (light) and `html[data-theme="dark"]` (dark).
 
 The left sidebar's background is `--left-sidebar-bg-color`, which core defines on `main.theme-container-inner`, so it is overridden there.
 
+## Fonts
+
+`--ls-font-family` is: Atkinson Hyperlegible Next, `tabler-icons`, Tabler Icons PUA, Symbols Nerd Font Mono, then the system fonts.
+
+| Family | Source | Covers |
+|---|---|---|
+| Atkinson Hyperlegible Next | `@fontsource-variable/atkinson-hyperlegible-next` on jsDelivr; variable weight 200–800, upright and italic, latin and latin-ext | text |
+| Cascadia Code | `@fontsource-variable/cascadia-code` on jsDelivr; variable weight 200–700, upright and italic, latin, latin-ext and symbols (box drawing) | code blocks and inline code |
+| `tabler-icons` | declared by Logseq core (2.47.0); the theme only names it | icons typed as text |
+| Tabler Icons PUA | `@tabler/icons-webfont@2.47.0` on jsDelivr | the same icons, where core's font is missing |
+| Symbols Nerd Font Mono | a locally installed copy, else nerd-fonts v3.4.0 on jsDelivr (2.5 MB) | Nerd Font icons |
+
+- **Code stack:** `"Cascadia Code NF", "Cascadia Code", "Symbols Nerd Font Mono"`, then system monospace fonts. Microsoft publishes the Nerd Font build only inside its release zip, not as a web font, so an installed copy is used when there is one; otherwise Cascadia Code plus the symbols font shows the same glyphs. Ligatures are Cascadia Code's contextual alternates (`font-variant-ligatures: contextual`); Cascadia Mono is the same font without them. Code also needs `letter-spacing: 0`: the body's `-0.01em` is inherited by code blocks, and Chromium drops ligatures wherever letter-spacing is not zero (found live: inline code had ligatures, code blocks did not).
+- **Loaded by URL, not from plugin files.** The same stylesheet has to work as `custom.css`, where there are no plugin files, and that is the only route on iOS (the mobile app loads no plugins).
+- **`@font-face`, not `@import`.** `@import` is only valid before every other rule, and the palette comes first in the built file.
+- **Icon faces are limited to the private use areas** (`unicode-range`), because tabler also maps a–z and 0–9. A browser downloads a face only when the page shows a character in its range, so the Nerd Font file is fetched only when one of its icons is on screen.
+- **Tabler comes before the Nerd Font.** The two share code points in U+EA01–U+F8FF; there, the tabler icon is shown.
+- URLs are pinned to a version; the tests reject unpinned URLs and other hosts.
+
 ## Block layout
 
 Core stacks a block's title above its tag chips whenever the block is narrower than 600px (`@container` in core `block.css`), which hits hover previews, the right sidebar and nested blocks. Inkwell keeps them side by side down to 360px and stacks below that.

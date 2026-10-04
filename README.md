@@ -25,6 +25,10 @@ More variants (blue, monochrome) are planned; see [docs/DESIGN.md](docs/DESIGN.m
 
 **As custom.css.** Settings › General › Custom theme › Edit custom.css, paste the whole of one variant file, e.g. [`themes/inkwell-slate.css`](themes/inkwell-slate.css), and save. One file styles both light and dark mode.
 
+**On iOS.** The mobile app does not load plugins, so use the custom.css route there: custom.css belongs to the graph and applies on every device that opens it.
+
+**Fonts and network.** The fonts are downloaded from the jsDelivr CDN (pinned versions) the first time they are needed. Offline, or with the CDN blocked, text falls back to the system font. Optional on macOS: `brew install --cask font-cascadia-code-nf` installs the Nerd Font build of the code font, which the theme then uses in place of the downloaded one.
+
 ## What it covers
 
 - The three variable layers Logseq reads: shui/Tailwind HSL tokens, the `--lx-gray-*` / `--lx-accent-*` scales, and the classic `--ls-*` variables.
@@ -34,6 +38,7 @@ More variants (blue, monochrome) are planned; see [docs/DESIGN.md](docs/DESIGN.m
   - highlights and the 7 block background colours
   - callouts (NOTE/TIP/IMPORTANT/WARNING/CAUTION, and PINNED as a Decision callout)
   - quotes, code, task status and priority icons
+  - fonts: Atkinson Hyperlegible Next for text, Cascadia Code (with ligatures) for code; tabler and Nerd Font icons typed as text render too
   - images and videos: images without a saved size show at 640px, default-sized videos fill the block; resized media keep their size
   - tag chips stay beside the block title in hover previews and narrow panels
 - **App surfaces:** left sidebar, command palette, dialogs, popovers and menus (with a visible hover and selection highlight), date picker, buttons, inputs, shortcut keycaps.
