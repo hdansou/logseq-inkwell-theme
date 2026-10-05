@@ -19,7 +19,7 @@ rm -f "$OUT"
 # The marketplace requires an image: no release without a light and a dark screenshot.
 ls assets/screenshots/*light* >/dev/null 2>&1 && ls assets/screenshots/*dark* >/dev/null 2>&1 \
   || { echo "no light and dark screenshots in assets/screenshots (shown by the README); add them before a release" >&2; exit 1; }
-FILES="package.json README.md LICENSE CHANGELOG.md themes assets/icon.png assets/screenshots"
+FILES="package.json index.html README.md LICENSE CHANGELOG.md themes assets/icon.png assets/screenshots"
 # shellcheck disable=SC2086
 zip -q -r "$OUT" $FILES -x '*.DS_Store'
 echo "$OUT"

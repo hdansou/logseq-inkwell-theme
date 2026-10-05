@@ -4,6 +4,10 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 
 ## [Unreleased]
 
+### Fixed
+
+- Embedded tweets (`{{twitter …}}`) were a short box you had to scroll inside (core sets only `min-height: 240px`). As a plugin, a small script (`index.html`) now sizes each tweet to its content; the 240px minimum stays. Installed as custom.css (including iOS), tweets get a fixed 600px.
+
 ## [1.1.0] - 2026-10-05
 
 ### Added

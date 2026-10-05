@@ -35,6 +35,7 @@
     "id": "logseq-inkwell-theme",
     "title": "Inkwell theme",
     "icon": "./assets/icon.png",
+    "main": "index.html",
     "themes": [
       {
         "name": "Inkwell Slate Light",

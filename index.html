@@ -1,0 +1,28 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Inkwell theme</title>
+<script src="https://cdn.jsdelivr.net/npm/@logseq/libs@0.3.4/dist/lsplugin.user.js" integrity="sha384-8u4U8ulMoP2IdH053mS+GNOzHDCnOif3PWUsC2jZB00WpT2wNkMEAUSa0fcQ78E1" crossorigin="anonymous"></script>
+<script>
+// Sizes {{twitter}} embeds to their content. Core renders the tweet as a cross-origin iframe and never resizes it;
+// the embed reports its height to the page (twttr.private.resize), so apply it to the iframe that sent it.
+// The library is only needed for Logseq's plugin handshake (pinned, with integrity); tweets need the network anyway.
+// Without this script (custom.css install) the stylesheet's fixed fallback height applies.
+const host = window.parent
+const onMessage = (e) => {
+  if (e.origin !== 'https://platform.twitter.com') return
+  let data = e.data
+  if (typeof data === 'string') {
+    try { data = JSON.parse(data) } catch { return }
+  }
+  const msg = data && data['twttr.embed']
+  const height = msg && msg.method === 'twttr.private.resize' && msg.params && msg.params[0] && msg.params[0].height
+  if (!(height > 0)) return
+  for (const frame of host.document.querySelectorAll('iframe.tweet-embed')) {
+    if (frame.contentWindow === e.source) frame.style.height = `${Math.ceil(height)}px`
+  }
+}
+logseq.ready(() => {
+  host.addEventListener('message', onMessage)
+  logseq.beforeunload(async () => host.removeEventListener('message', onMessage))
+}).catch(console.error)
+</script>

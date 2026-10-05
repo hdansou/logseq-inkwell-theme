@@ -331,6 +331,11 @@ html[data-theme] .cp__themes-installed .it:hover, html[data-theme] .cp__themes-i
 .ls-block .video-embed-frame[style*="width: 560px"] { width: 100% !important; flex: 1 1 auto; }
 .ls-block video.asset-video[style*="width: 560px"] { width: 100% !important; height: auto !important; }
 
+/* tweets: core embeds {{twitter}} as an iframe with only an inline min-height of 240px and never resizes it (the embed is
+   cross-origin), so a tweet scrolls inside a short box. index.html sizes each one to its content (inline height, which
+   wins over this rule); this is the fallback when that script is not running (custom.css install). */
+.ls-block iframe.tweet-embed { height: 600px; }
+
 /* ---------- code ---------- */
 /* letter-spacing 0: any other value (body has -0.01em) makes Chromium drop ligatures */
 .CodeMirror, pre, code, :not(pre) > code { letter-spacing: 0; font-family: "Cascadia Code NF", "Cascadia Code", "Symbols Nerd Font Mono", ui-monospace, Menlo, Consolas, monospace; font-variant-ligatures: contextual; }
