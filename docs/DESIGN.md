@@ -74,6 +74,14 @@ Core gives embeds (`.video-embed-frame`) and uploaded videos (`video.asset-video
 
 Note: app.logseq.com currently serves older embed markup (`iframe.aspect-video`, before core #12782), so test video changes in the desktop app.
 
+## Tweets
+
+Core renders `{{twitter <url>}}` as `iframe.tweet-embed` (`ui.cljs` `tweet-embed`) with an inline `min-height: 240px` and no height, and never resizes it: the embed is cross-origin, so the page cannot read its content height. A tweet, especially a quote tweet, scrolls inside a short box.
+
+The embed does report its height: it posts `{"twttr.embed": {method: "twttr.private.resize", params: [{width, height}]}}` (a JSON string) to the parent window. This is the only place the theme runs code. `index.html` (`main` in `package.json`) listens on the host window, accepts only `https://platform.twitter.com`, finds the iframe whose `contentWindow` is the sender, and sets its inline `height`. The 240px minimum stays. Logseq needs `@logseq/libs` for the plugin handshake (without it the plugin fails with "handshake Timeout"), so the page loads it from jsDelivr, pinned with an integrity hash.
+
+CSS-only installs (custom.css, iOS) cannot run the script, so the stylesheet gives `iframe.tweet-embed` a fixed `height: 600px`; the script's inline height wins over it. Verified live on desktop 2.0.1: the test tweet resized to 833px.
+
 ## Flashcard ratings
 
 | Button (`id`) | Colour | Fill / text tokens |
