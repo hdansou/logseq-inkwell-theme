@@ -6,7 +6,7 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 
 ### Fixed
 
-- Embedded tweets (`{{twitter …}}`) were a short box you had to scroll inside (core sets only `min-height: 240px`). As a plugin, a small script (`index.html`) now sizes each tweet to its content; the 240px minimum stays. Installed as custom.css (including iOS), tweets get a fixed 600px.
+- Embedded tweets (`{{twitter …}}`) were a short box you had to scroll inside (core sets only `min-height: 240px`). They now get a fixed 600px (the 240px minimum stays). Fitting each tweet exactly needs code, so it lives in the separate Inkwell Companion plugin, which overrides this height.
 
 ## [1.1.0] - 2026-10-05
 

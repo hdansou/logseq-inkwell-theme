@@ -27,7 +27,7 @@ More variants (blue, monochrome) are planned; see [docs/DESIGN.md](docs/DESIGN.m
 
 **On iOS.** The mobile app does not load plugins, so use the custom.css route there: custom.css belongs to the graph and applies on every device that opens it.
 
-**Tweets.** Core shows `{{twitter …}}` embeds in a short box. As a plugin, the theme sizes each one to its tweet (a small script, `index.html`, listening to the embed's own resize message; it loads Logseq's plugin library from jsDelivr, pinned). As custom.css, or on iOS, tweets get a fixed 600px instead.
+**Tweets.** Core shows `{{twitter …}}` embeds in a short box. The theme gives them a fixed 600px. To size each one to its tweet, install the companion plugin [Inkwell Companion](https://github.com/hdansou/logseq-inkwell-companion) (a plugin is needed because the embed is cross-origin; the theme itself runs no code).
 
 **Fonts and network.** The fonts are downloaded from the jsDelivr CDN (pinned versions) the first time they are needed. Offline, or with the CDN blocked, text falls back to the system font. Optional on macOS: `brew install --cask font-cascadia-code-nf` installs the Nerd Font build of the code font, which the theme then uses in place of the downloaded one.
 

@@ -44,7 +44,7 @@ describe('src/base.css', () => {
   test('tweet embeds get a real height (core sets only min-height 240)', () => {
     const body = rules(base).find((x) => x.selector === '.ls-block iframe.tweet-embed')?.body ?? ''
     assert.match(body, /height:\s*600px/)
-    assert.doesNotMatch(body, /min-height|max-height/, 'the core min-height stays; the plugin script sizes the rest')
+    assert.doesNotMatch(body, /min-height|max-height/, 'the core min-height stays; the Inkwell Companion plugin sizes the rest')
   })
 
   test('default-sized videos (inline width 560px) fill the block; resized ones keep their width', () => {
@@ -353,14 +353,6 @@ for (const variant of VARIANTS) {
 
 describe('package.json', async () => {
   const pkg = JSON.parse(await read('package.json'))
-
-  test('main (tweet sizing script) exists, pins its library with integrity, and only trusts the Twitter embed origin', async () => {
-    assert.equal(pkg.logseq.main, 'index.html')
-    const html = await read('index.html')
-    assert.match(html, /<script src="https:\/\/cdn\.jsdelivr\.net\/npm\/@logseq\/libs@\d+\.\d+\.\d+\/dist\/lsplugin\.user\.js" integrity="sha384-[A-Za-z0-9+/=]+"/)
-    assert.match(html, /e\.origin !== 'https:\/\/platform\.twitter\.com'/)
-    assert.match(html, /frame\.contentWindow === e\.source/)
-  })
 
   test('is a marketplace-shaped theme package', () => {
     assert.match(pkg.name, /^[a-z0-9-]+$/)

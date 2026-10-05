@@ -268,8 +268,8 @@ html[data-theme] .cp__themes-installed .it:hover, html[data-theme] .cp__themes-i
 .ls-block video.asset-video[style*="width: 560px"] { width: 100% !important; height: auto !important; }
 
 /* tweets: core embeds {{twitter}} as an iframe with only an inline min-height of 240px and never resizes it (the embed is
-   cross-origin), so a tweet scrolls inside a short box. index.html sizes each one to its content (inline height, which
-   wins over this rule); this is the fallback when that script is not running (custom.css install). */
+   cross-origin), so a tweet scrolls inside a short box. the Inkwell Companion plugin sizes each one to its content (inline
+   height, which wins over this rule); this is the fixed height without it (custom.css, iOS, plugin not installed). */
 .ls-block iframe.tweet-embed { height: 600px; }
 
 /* ---------- code ---------- */

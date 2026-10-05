@@ -78,9 +78,7 @@ Note: app.logseq.com currently serves older embed markup (`iframe.aspect-video`,
 
 Core renders `{{twitter <url>}}` as `iframe.tweet-embed` (`ui.cljs` `tweet-embed`) with an inline `min-height: 240px` and no height, and never resizes it: the embed is cross-origin, so the page cannot read its content height. A tweet, especially a quote tweet, scrolls inside a short box.
 
-The embed does report its height: it posts `{"twttr.embed": {method: "twttr.private.resize", params: [{width, height}]}}` (a JSON string) to the parent window. This is the only place the theme runs code. `index.html` (`main` in `package.json`) listens on the host window, accepts only `https://platform.twitter.com`, finds the iframe whose `contentWindow` is the sender, and sets its inline `height`. The 240px minimum stays. Logseq needs `@logseq/libs` for the plugin handshake (without it the plugin fails with "handshake Timeout"), so the page loads it from jsDelivr, pinned with an integrity hash.
-
-CSS-only installs (custom.css, iOS) cannot run the script, so the stylesheet gives `iframe.tweet-embed` a fixed `height: 600px`; the script's inline height wins over it. Verified live on desktop 2.0.1: the test tweet resized to 833px.
+The theme can only set a fixed height, so `iframe.tweet-embed` gets `height: 600px` (the core 240px minimum stays). Fitting each tweet exactly needs code: the embed posts `twttr.private.resize` with its height to the parent window, and the separate **Inkwell Companion** plugin applies it as an inline height, which wins over this rule. That keeps the theme a stylesheet with no code, usable as custom.css and on iOS. Verified live on desktop 2.0.1 with the script: the test tweet resized to 833px.
 
 ## Flashcard ratings
 
