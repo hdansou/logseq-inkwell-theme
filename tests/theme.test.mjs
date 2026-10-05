@@ -41,12 +41,6 @@ test('there is at least one variant, and slate is one of them', () => {
 })
 
 describe('src/base.css', () => {
-  test('tweet embeds get a real height (core sets only min-height 240)', () => {
-    const body = rules(base).find((x) => x.selector === '.ls-block iframe.tweet-embed')?.body ?? ''
-    assert.match(body, /height:\s*600px/)
-    assert.doesNotMatch(body, /min-height|max-height/, 'the core min-height stays; the Inkwell Companion plugin sizes the rest')
-  })
-
   test('default-sized videos (inline width 560px) fill the block; resized ones keep their width', () => {
     const find = (sel) => rules(base).find((x) => x.selector === sel)
     const shell = find('.ls-block .video-embed-shell:has(> .video-embed-frame[style*="width: 560px"])')
