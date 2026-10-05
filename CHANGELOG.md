@@ -4,6 +4,8 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-05
+
 ### Added
 
 - Code font: Cascadia Code with ligatures, in code blocks and inline code. An installed "Cascadia Code NF" is used first; otherwise the web font, with Symbols Nerd Font Mono for the Nerd Font icons.
@@ -40,5 +42,6 @@ All notable changes to this theme. Format: [Keep a Changelog](https://keepachang
 - Screenshots from the desktop app in the README and the release zip: typography and tasks, tables (light and dark), properties and callouts (light).
 - Theme-Lab human test graph (`npm run lab [-- --variant <id>]`, `npm run lab:feedback`).
 
-[Unreleased]: https://github.com/hdansou/logseq-inkwell-theme/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/hdansou/logseq-inkwell-theme/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/hdansou/logseq-inkwell-theme/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/hdansou/logseq-inkwell-theme/releases/tag/v1.0.0
